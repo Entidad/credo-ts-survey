@@ -2,9 +2,9 @@ import { AgentMessage, IsValidMessageType, parseMessageType } from '@aries-frame
 import { Expose } from 'class-transformer'
 import { IsString } from 'class-validator'
 
-export class AnswerMessage extends AgentMessage {
+export class BarMessage extends AgentMessage {
   /**
-   * Create new AnswerMessage instance.
+   * Create new BarMessage instance.
    * @param options
    */
   public constructor(options: { id?: string; response: string; threadId: string }) {
@@ -17,8 +17,8 @@ export class AnswerMessage extends AgentMessage {
     }
   }
 
-  @IsValidMessageType(AnswerMessage.type)
-  public readonly type = AnswerMessage.type.messageTypeUri
+  @IsValidMessageType(BarMessage.type)
+  public readonly type = BarMessage.type.messageTypeUri
   public static readonly type = parseMessageType('https://didcomm.org/foobar/1.0/bar')
 
   @Expose({ name: 'response' })

@@ -87,7 +87,7 @@ export class FooBarRecord extends BaseRecord<DefaultFooBarTags, CustomFooBarTags
 
     if (!expectedStates.includes(this.state)) {
       throw new AriesFrameworkError(
-        `Question bar record is in invalid state ${this.state}. Valid states are: ${expectedStates.join(', ')}.`
+        `Foo bar record is in invalid state ${this.state}. Valid states are: ${expectedStates.join(', ')}.`
       )
     }
   }

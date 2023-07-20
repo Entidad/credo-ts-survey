@@ -1,17 +1,17 @@
 import type { FooBarService } from '../services'
 import type { MessageHandler, MessageHandlerInboundMessage } from '@aries-framework/core'
 
-import { AnswerMessage } from '../messages'
+import { BarMessage } from '../messages'
 
-export class AnswerMessageHandler implements MessageHandler {
-  private fooAnswerService: FooBarService
-  public supportedMessages = [AnswerMessage]
+export class BarMessageHandler implements MessageHandler {
+  private fooBarService: FooBarService
+  public supportedMessages = [BarMessage]
 
-  public constructor(fooAnswerService: FooBarService) {
-    this.fooAnswerService = fooAnswerService
+  public constructor(fooBarService: FooBarService) {
+    this.fooBarService = fooBarService
   }
 
-  public async handle(messageContext: MessageHandlerInboundMessage<AnswerMessageHandler>) {
-    await this.fooAnswerService.receiveAnswer(messageContext)
+  public async handle(messageContext: MessageHandlerInboundMessage<BarMessageHandler>) {
+    await this.fooBarService.receiveBar(messageContext)
   }
 }

@@ -4,9 +4,9 @@ import { IsBoolean, IsInstance, IsOptional, IsString, ValidateNested } from 'cla
 
 import { ValidResponse } from '../models'
 
-export class QuestionMessage extends AgentMessage {
+export class FooMessage extends AgentMessage {
   /**
-   * Create new QuestionMessage instance.
+   * Create new FooMessage instance.
    * @param options
    */
   public constructor(options: {
@@ -29,8 +29,8 @@ export class QuestionMessage extends AgentMessage {
     }
   }
 
-  @IsValidMessageType(QuestionMessage.type)
-  public readonly type = QuestionMessage.type.messageTypeUri
+  @IsValidMessageType(FooMessage.type)
+  public readonly type = FooMessage.type.messageTypeUri
   public static readonly type = parseMessageType('https://didcomm.org/foobar/1.0/foo')
 
   @IsOptional()

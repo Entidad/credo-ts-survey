@@ -27,7 +27,7 @@ export class FooBarModule implements Module {
     featureRegistry.register(
       new Protocol({
         id: 'https://didcomm.org/foobar/1.0',
-        roles: [FooBarRole.Questioner, FooBarRole.Responder],
+        roles: [FooBarRole.Fooer, FooBarRole.Responder],
       })
     )
   }

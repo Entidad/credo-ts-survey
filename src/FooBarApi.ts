@@ -9,31 +9,31 @@ import {
   MessageSender,
 } from '@aries-framework/core'
 
-import { AnswerMessageHandler, QuestionMessageHandler } from './handlers'
+import { BarMessageHandler, FooMessageHandler } from './handlers'
 import { ValidResponse } from './models'
 import { FooBarService } from './services'
 
 @injectable()
 export class FooBarApi {
-  private fooAnswerService: FooBarService
+  private fooBarService: FooBarService
   private messageSender: MessageSender
   private connectionService: ConnectionService
   private agentContext: AgentContext
 
   public constructor(
-    fooAnswerService: FooBarService,
+    fooBarService: FooBarService,
     messageSender: MessageSender,
     connectionService: ConnectionService,
     agentContext: AgentContext
   ) {
-    this.fooAnswerService = fooAnswerService
+    this.fooBarService = fooBarService
     this.messageSender = messageSender
     this.connectionService = connectionService
     this.agentContext = agentContext
 
     this.agentContext.dependencyManager.registerMessageHandlers([
-      new QuestionMessageHandler(this.fooAnswerService),
-      new AnswerMessageHandler(this.fooAnswerService),
+      new FooMessageHandler(this.fooBarService),
+      new BarMessageHandler(this.fooBarService),
     ])
   }
 
@@ -45,7 +45,7 @@ export class FooBarApi {
    * @param config config for creating foo message
    * @returns FooBar record
    */
-  public async sendQuestion(
+  public async sendFoo(
     connectionId: string,
     config: {
       foo: string
@@ -56,7 +56,7 @@ export class FooBarApi {
     const connection = await this.connectionService.getById(this.agentContext, connectionId)
     connection.assertReady()
 
-    const { fooMessage, fooAnswerRecord } = await this.fooAnswerService.createQuestion(
+    const { fooMessage, fooBarRecord } = await this.fooBarService.createFoo(
       this.agentContext,
       connectionId,
       {
@@ -68,25 +68,25 @@ export class FooBarApi {
     const outboundMessageContext = new OutboundMessageContext(fooMessage, {
       agentContext: this.agentContext,
       connection,
-      associatedRecord: fooAnswerRecord,
+      associatedRecord: fooBarRecord,
     })
 
     await this.messageSender.sendMessage(outboundMessageContext)
 
-    return fooAnswerRecord
+    return fooBarRecord
   }
 
   /**
    * Create an bar message as the holder and send it in response to a foo message
    *
-   * @param fooRecordId the id of the fooAnswer record
+   * @param fooRecordId the id of the fooBar record
    * @param response response included in the bar message
    * @returns FooBar record
    */
-  public async sendAnswer(fooRecordId: string, response: string) {
-    const fooRecord = await this.fooAnswerService.getById(this.agentContext, fooRecordId)
+  public async sendBar(fooRecordId: string, response: string) {
+    const fooRecord = await this.fooBarService.getById(this.agentContext, fooRecordId)
 
-    const { barMessage, fooAnswerRecord } = await this.fooAnswerService.createAnswer(
+    const { barMessage, fooBarRecord } = await this.fooBarService.createBar(
       this.agentContext,
       fooRecord,
       response
@@ -97,12 +97,12 @@ export class FooBarApi {
     const outboundMessageContext = new OutboundMessageContext(barMessage, {
       agentContext: this.agentContext,
       connection,
-      associatedRecord: fooAnswerRecord,
+      associatedRecord: fooBarRecord,
     })
 
     await this.messageSender.sendMessage(outboundMessageContext)
 
-    return fooAnswerRecord
+    return fooBarRecord
   }
 
   /**
@@ -111,7 +111,7 @@ export class FooBarApi {
    * @returns list containing all FooBar records
    */
   public getAll() {
-    return this.fooAnswerService.getAll(this.agentContext)
+    return this.fooBarService.getAll(this.agentContext)
   }
 
   /**
@@ -120,17 +120,17 @@ export class FooBarApi {
    * @returns list containing all FooBar records matching specified query params
    */
   public findAllByQuery(query: Query<FooBarRecord>) {
-    return this.fooAnswerService.findAllByQuery(this.agentContext, query)
+    return this.fooBarService.findAllByQuery(this.agentContext, query)
   }
 
   /**
    * Retrieve a foo bar record by id
    *
-   * @param fooAnswerId The fooAnswer record id
+   * @param fooBarId The fooBar record id
    * @return The foo bar record or null if not found
    *
    */
-  public findById(fooAnswerId: string) {
-    return this.fooAnswerService.findById(this.agentContext, fooAnswerId)
+  public findById(fooBarId: string) {
+    return this.fooBarService.findById(this.agentContext, fooBarId)
   }
 }

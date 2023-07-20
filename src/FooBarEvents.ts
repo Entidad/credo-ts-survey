@@ -9,6 +9,6 @@ export interface FooBarStateChangedEvent extends BaseEvent {
   type: typeof FooBarEventTypes.FooBarStateChanged
   payload: {
     previousState: FooBarState | null
-    fooAnswerRecord: FooBarRecord
+    fooBarRecord: FooBarRecord
   }
 }

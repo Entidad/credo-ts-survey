@@ -6,22 +6,22 @@ import { AriesFrameworkError, EventEmitter, inject, injectable, InjectionSymbols
 
 import { FooBarEventTypes } from '../FooBarEvents'
 import { FooBarRole } from '../FooBarRole'
-import { AnswerMessage, QuestionMessage } from '../messages'
+import { BarMessage, FooMessage } from '../messages'
 import { FooBarState } from '../models'
 import { FooBarRepository, FooBarRecord } from '../repository'
 
 @injectable()
 export class FooBarService {
-  private fooAnswerRepository: FooBarRepository
+  private fooBarRepository: FooBarRepository
   private eventEmitter: EventEmitter
   private logger: Logger
 
   public constructor(
-    fooAnswerRepository: FooBarRepository,
+    fooBarRepository: FooBarRepository,
     eventEmitter: EventEmitter,
     @inject(InjectionSymbols.Logger) logger: Logger
   ) {
-    this.fooAnswerRepository = fooAnswerRepository
+    this.fooBarRepository = fooBarRepository
     this.eventEmitter = eventEmitter
     this.logger = logger
   }
@@ -34,7 +34,7 @@ export class FooBarService {
    * @param validResponses array of valid responses for foo
    * @returns foo message and FooBar record
    */
-  public async createQuestion(
+  public async createFoo(
     agentContext: AgentContext,
     connectionId: string,
     config: {
@@ -43,32 +43,32 @@ export class FooBarService {
       detail?: string
     }
   ) {
-    const fooMessage = new QuestionMessage({
+    const fooMessage = new FooMessage({
       fooText: config.foo,
       fooDetail: config?.detail,
       signatureRequired: false,
       validResponses: config.validResponses,
     })
 
-    const fooAnswerRecord = await this.createRecord({
+    const fooBarRecord = await this.createRecord({
       fooText: fooMessage.fooText,
       fooDetail: fooMessage.fooDetail,
       threadId: fooMessage.threadId,
       connectionId: connectionId,
-      role: FooBarRole.Questioner,
+      role: FooBarRole.Fooer,
       signatureRequired: false,
-      state: FooBarState.QuestionSent,
+      state: FooBarState.FooSent,
       validResponses: fooMessage.validResponses,
     })
 
-    await this.fooAnswerRepository.save(agentContext, fooAnswerRecord)
+    await this.fooBarRepository.save(agentContext, fooBarRecord)
 
     this.eventEmitter.emit<FooBarStateChangedEvent>(agentContext, {
       type: FooBarEventTypes.FooBarStateChanged,
-      payload: { previousState: null, fooAnswerRecord },
+      payload: { previousState: null, fooBarRecord },
     })
 
-    return { fooMessage, fooAnswerRecord }
+    return { fooMessage, fooBarRecord }
   }
 
   /**
@@ -77,8 +77,8 @@ export class FooBarService {
    * @param messageContext the message context containing a foo message
    * @returns FooBar record
    */
-  public async processReceiveQuestion(
-    messageContext: InboundMessageContext<QuestionMessage>
+  public async processReceiveFoo(
+    messageContext: InboundMessageContext<FooMessage>
   ): Promise<FooBarRecord> {
     const { message: fooMessage } = messageContext
 
@@ -91,49 +91,49 @@ export class FooBarService {
       fooMessage.id
     )
     if (fooRecord) {
-      throw new AriesFrameworkError(`Question bar record with thread Id ${fooMessage.id} already exists.`)
+      throw new AriesFrameworkError(`Foo bar record with thread Id ${fooMessage.id} already exists.`)
     }
-    const fooAnswerRecord = await this.createRecord({
+    const fooBarRecord = await this.createRecord({
       fooText: fooMessage.fooText,
       fooDetail: fooMessage.fooDetail,
       connectionId: connection?.id,
       threadId: fooMessage.threadId,
       role: FooBarRole.Responder,
       signatureRequired: false,
-      state: FooBarState.QuestionReceived,
+      state: FooBarState.FooReceived,
       validResponses: fooMessage.validResponses,
     })
 
-    await this.fooAnswerRepository.save(messageContext.agentContext, fooAnswerRecord)
+    await this.fooBarRepository.save(messageContext.agentContext, fooBarRecord)
 
     this.eventEmitter.emit<FooBarStateChangedEvent>(messageContext.agentContext, {
       type: FooBarEventTypes.FooBarStateChanged,
-      payload: { previousState: null, fooAnswerRecord },
+      payload: { previousState: null, fooBarRecord },
     })
 
-    return fooAnswerRecord
+    return fooBarRecord
   }
 
   /**
    * create bar message, check that response is valid
    *
-   * @param fooAnswerRecord record containing foo and valid responses
+   * @param fooBarRecord record containing foo and valid responses
    * @param response response used in bar message
    * @returns bar message and FooBar record
    */
-  public async createAnswer(agentContext: AgentContext, fooAnswerRecord: FooBarRecord, response: string) {
-    const barMessage = new AnswerMessage({ response: response, threadId: fooAnswerRecord.threadId })
+  public async createBar(agentContext: AgentContext, fooBarRecord: FooBarRecord, response: string) {
+    const barMessage = new BarMessage({ response: response, threadId: fooBarRecord.threadId })
 
-    fooAnswerRecord.assertState(FooBarState.QuestionReceived)
+    fooBarRecord.assertState(FooBarState.FooReceived)
 
-    fooAnswerRecord.response = response
+    fooBarRecord.response = response
 
-    if (fooAnswerRecord.validResponses.some((e) => e.text === response)) {
-      await this.updateState(agentContext, fooAnswerRecord, FooBarState.AnswerSent)
+    if (fooBarRecord.validResponses.some((e) => e.text === response)) {
+      await this.updateState(agentContext, fooBarRecord, FooBarState.BarSent)
     } else {
       throw new AriesFrameworkError(`Response does not match valid responses`)
     }
-    return { barMessage, fooAnswerRecord }
+    return { barMessage, fooBarRecord }
   }
 
   /**
@@ -142,52 +142,52 @@ export class FooBarService {
    * @param messageContext the message context containing an bar message message
    * @returns FooBar record
    */
-  public async receiveAnswer(messageContext: InboundMessageContext<AnswerMessage>): Promise<FooBarRecord> {
+  public async receiveBar(messageContext: InboundMessageContext<BarMessage>): Promise<FooBarRecord> {
     const { message: barMessage } = messageContext
 
     this.logger.debug(`Receiving bar message with id ${barMessage.id}`)
 
     const connection = messageContext.assertReadyConnection()
-    const fooAnswerRecord = await this.findByThreadAndConnectionId(
+    const fooBarRecord = await this.findByThreadAndConnectionId(
       messageContext.agentContext,
       connection.id,
       barMessage.threadId
     )
-    if (!fooAnswerRecord) {
-      throw new AriesFrameworkError(`Question Answer record with thread Id ${barMessage.threadId} not found.`)
+    if (!fooBarRecord) {
+      throw new AriesFrameworkError(`Foo Bar record with thread Id ${barMessage.threadId} not found.`)
     }
-    fooAnswerRecord.assertState(FooBarState.QuestionSent)
-    fooAnswerRecord.assertRole(FooBarRole.Questioner)
+    fooBarRecord.assertState(FooBarState.FooSent)
+    fooBarRecord.assertRole(FooBarRole.Fooer)
 
-    fooAnswerRecord.response = barMessage.response
+    fooBarRecord.response = barMessage.response
 
-    await this.updateState(messageContext.agentContext, fooAnswerRecord, FooBarState.AnswerReceived)
+    await this.updateState(messageContext.agentContext, fooBarRecord, FooBarState.BarReceived)
 
-    return fooAnswerRecord
+    return fooBarRecord
   }
 
   /**
    * Update the record to a new state and emit an state changed event. Also updates the record
    * in storage.
    *
-   * @param fooAnswerRecord The foo bar record to update the state for
+   * @param fooBarRecord The foo bar record to update the state for
    * @param newState The state to update to
    *
    */
   private async updateState(
     agentContext: AgentContext,
-    fooAnswerRecord: FooBarRecord,
+    fooBarRecord: FooBarRecord,
     newState: FooBarState
   ) {
-    const previousState = fooAnswerRecord.state
-    fooAnswerRecord.state = newState
-    await this.fooAnswerRepository.update(agentContext, fooAnswerRecord)
+    const previousState = fooBarRecord.state
+    fooBarRecord.state = newState
+    await this.fooBarRepository.update(agentContext, fooBarRecord)
 
     this.eventEmitter.emit<FooBarStateChangedEvent>(agentContext, {
       type: FooBarEventTypes.FooBarStateChanged,
       payload: {
         previousState,
-        fooAnswerRecord: fooAnswerRecord,
+        fooBarRecord: fooBarRecord,
       },
     })
   }
@@ -230,7 +230,7 @@ export class FooBarService {
     connectionId: string,
     threadId: string
   ): Promise<FooBarRecord> {
-    return this.fooAnswerRepository.getSingleByQuery(agentContext, {
+    return this.fooBarRepository.getSingleByQuery(agentContext, {
       connectionId,
       threadId,
     })
@@ -248,7 +248,7 @@ export class FooBarService {
     connectionId: string,
     threadId: string
   ): Promise<FooBarRecord | null> {
-    return this.fooAnswerRepository.findSingleByQuery(agentContext, {
+    return this.fooBarRepository.findSingleByQuery(agentContext, {
       connectionId,
       threadId,
     })
@@ -257,38 +257,38 @@ export class FooBarService {
   /**
    * Retrieve a foo bar record by id
    *
-   * @param fooAnswerId The fooAnswer record id
+   * @param fooBarId The fooBar record id
    * @throws {RecordNotFoundError} If no record is found
    * @return The foo bar record
    *
    */
-  public getById(agentContext: AgentContext, fooAnswerId: string): Promise<FooBarRecord> {
-    return this.fooAnswerRepository.getById(agentContext, fooAnswerId)
+  public getById(agentContext: AgentContext, fooBarId: string): Promise<FooBarRecord> {
+    return this.fooBarRepository.getById(agentContext, fooBarId)
   }
 
   /**
    * Retrieve a foo bar record by id
    *
-   * @param fooAnswerId The fooAnswer record id
+   * @param fooBarId The fooBar record id
    * @return The foo bar record or null if not found
    *
    */
-  public findById(agentContext: AgentContext, fooAnswerId: string): Promise<FooBarRecord | null> {
-    return this.fooAnswerRepository.findById(agentContext, fooAnswerId)
+  public findById(agentContext: AgentContext, fooBarId: string): Promise<FooBarRecord | null> {
+    return this.fooBarRepository.findById(agentContext, fooBarId)
   }
 
   /**
    * Retrieve a foo bar record by id
    *
-   * @param fooAnswerId The fooAnswer record id
+   * @param fooBarId The fooBar record id
    * @return The foo bar record or null if not found
    *
    */
   public getAll(agentContext: AgentContext) {
-    return this.fooAnswerRepository.getAll(agentContext)
+    return this.fooBarRepository.getAll(agentContext)
   }
 
   public async findAllByQuery(agentContext: AgentContext, query: Query<FooBarRecord>) {
-    return this.fooAnswerRepository.findByQuery(agentContext, query)
+    return this.fooBarRepository.findByQuery(agentContext, query)
   }
 }

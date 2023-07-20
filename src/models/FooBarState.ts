@@ -4,8 +4,8 @@
  * @see https://github.com/hyperledger/aries-rfcs/blob/main/features/0113-foo-bar/README.md
  */
 export enum FooBarState {
-  QuestionSent = 'foo-sent',
-  QuestionReceived = 'foo-received',
-  AnswerReceived = 'bar-received',
-  AnswerSent = 'bar-sent',
+  FooSent = 'foo-sent',
+  FooReceived = 'foo-received',
+  BarReceived = 'bar-received',
+  BarSent = 'bar-sent',
 }
