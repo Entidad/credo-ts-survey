@@ -3,14 +3,14 @@
 Test module for [Aries Framework JavaScript](https://github.com/hyperledger/aries-framework-javascript.git). Implements [Aries RFC 0113](https://github.com/hyperledger/aries-rfcs/blob/1795d5c2d36f664f88f5e8045042ace8e573808c/features/0113-question-answer/README.md).
 
 ```sh
-npm info "git+http://github.com/entidad/react-native-isemulator.git" peerDependencies
+npm info "git+http://github.com/entidad/aries-agent-module-test.git" peerDependencies
 
 ```
 
 Then add the question-answer module to your project.
 
 ```sh
-yarn add git+http://github.com/entidad/react-native-isemulator.git
+yarn add git+http://github.com/entidad/aries-agent-module-test.git
 ```
 
 ### Quick start
