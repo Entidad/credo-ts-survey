@@ -1,0 +1,34 @@
+import type { DependencyManager, FeatureRegistry, Module } from '@aries-framework/core'
+
+import { Protocol } from '@aries-framework/core'
+
+import { QuestionnaireApi } from './QuestionnaireApi'
+import { QuestionnaireRole } from './QuestionnaireRole'
+import { QuestionnaireRepository } from './repository'
+import { QuestionnaireService } from './services'
+
+export class QuestionnaireModule implements Module {
+  public readonly api = QuestionnaireApi
+
+  /**
+   * Registers the dependencies of the question answer module on the dependency manager.
+   */
+  public register(dependencyManager: DependencyManager, featureRegistry: FeatureRegistry) {
+    // Api
+    dependencyManager.registerContextScoped(QuestionnaireApi)
+
+    // Services
+    dependencyManager.registerSingleton(QuestionnaireService)
+
+    // Repositories
+    dependencyManager.registerSingleton(QuestionnaireRepository)
+
+    // Feature Registry
+    featureRegistry.register(
+      new Protocol({
+        id: 'https://didcomm.org/questionanswer/1.0',
+        roles: [QuestionnaireRole.Questioner, QuestionnaireRole.Responder],
+      })
+    )
+  }
+}

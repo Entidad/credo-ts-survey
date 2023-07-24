@@ -1,2 +1,2 @@
-export * from './QuestionnairenaireSubmissionRecord';
-export * from './QuestionnairenaireSubmissionRepository';
+export * from './QuestionnaireRecord';
+export * from './QuestionnaireRepository';

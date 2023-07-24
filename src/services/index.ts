@@ -1,1 +1,1 @@
-export * from './QuestionnairenaireSubmissionService'
+export * from './QuestionnaireService'

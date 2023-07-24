@@ -1,2 +1,2 @@
-export * from './QuestionnaireMessage';
-export * from './SubmissionMessage';
+export * from './QuestionMessage';
+export * from './AnswerMessage';

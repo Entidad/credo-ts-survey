@@ -18,8 +18,8 @@ __exportStar(require("./messages"), exports);
 __exportStar(require("./models"), exports);
 __exportStar(require("./services"), exports);
 __exportStar(require("./repository"), exports);
-__exportStar(require("./QuestionnairenaireSubmissionEvents"), exports);
-__exportStar(require("./QuestionnairenaireSubmissionApi"), exports);
-__exportStar(require("./QuestionnairenaireSubmissionRole"), exports);
-__exportStar(require("./QuestionnairenaireSubmissionModule"), exports);
+__exportStar(require("./QuestionnaireEvents"), exports);
+__exportStar(require("./QuestionnaireApi"), exports);
+__exportStar(require("./QuestionnaireRole"), exports);
+__exportStar(require("./QuestionnaireModule"), exports);
 //# sourceMappingURL=index.js.map
