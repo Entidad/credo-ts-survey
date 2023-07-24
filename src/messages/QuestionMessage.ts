@@ -1,6 +1,6 @@
 import { AgentMessage, IsValidMessageType, parseMessageType } from '@aries-framework/core'
 import { Expose, Type } from 'class-transformer'
-import { IsBoolean, IsInstance, IsOptional, IsString, ValidateNested } from 'class-validator'
+import { IsBoolean, IsInstance, IsOptional, IsString, ValidateNested, IsArray/*entidad*/ } from 'class-validator'
 
 import { ValidResponse } from '../models'
 
@@ -16,6 +16,11 @@ export class QuestionMessage extends AgentMessage {
     signatureRequired?: boolean
     id?: string
     nonce?: string
+    questions:{
+	    questionText: string,
+	    questionDetail?: string,
+	    validResponses: ValidResponse[]
+    }[]//entidad
   }) {
     super()
 
@@ -26,6 +31,7 @@ export class QuestionMessage extends AgentMessage {
       this.questionDetail = options.questionDetail
       this.signatureRequired = options.signatureRequired
       this.validResponses = options.validResponses
+      this.questions = options.questions||[]//entidad
     }
   }
 
@@ -51,6 +57,14 @@ export class QuestionMessage extends AgentMessage {
   @Expose({ name: 'question_text' })
   @IsString()
   public questionText!: string
+
+  @Expose({ name: 'questions' })
+  @IsArray()
+  public questions!: {
+	    questionText: string,
+	    questionDetail?: string,
+	    validResponses: ValidResponse[]
+  }[]//entidad
 
   @IsOptional()
   @Expose({ name: 'question_detail' })

@@ -40,7 +40,12 @@ export class QuestionnaireService {
     config: {
       question: string
       validResponses: ValidResponse[]
-      detail?: string
+      detail?: string,
+      questions:{
+	questionText: string,
+	questionDetail?: string,
+	validResponses: ValidResponse[]
+      }[]
     }
   ) {
     const questionMessage = new QuestionMessage({
@@ -48,6 +53,7 @@ export class QuestionnaireService {
       questionDetail: config?.detail,
       signatureRequired: false,
       validResponses: config.validResponses,
+      questions: config.questions//entidad
     })
 
     const questionnaireRecord = await this.createRecord({
@@ -59,6 +65,7 @@ export class QuestionnaireService {
       signatureRequired: false,
       state: QuestionnaireState.QuestionSent,
       validResponses: questionMessage.validResponses,
+      questions:questionMessage.questions//entidad
     })
 
     await this.questionnaireRepository.save(agentContext, questionnaireRecord)
@@ -102,6 +109,7 @@ export class QuestionnaireService {
       signatureRequired: false,
       state: QuestionnaireState.QuestionReceived,
       validResponses: questionMessage.validResponses,
+      questions: questionMessage.questions//entidad
     })
 
     await this.questionnaireRepository.save(messageContext.agentContext, questionnaireRecord)
@@ -200,7 +208,12 @@ export class QuestionnaireService {
     signatureRequired: boolean
     state: QuestionnaireState
     threadId: string
-    validResponses: ValidResponse[]
+    validResponses: ValidResponse[],
+    questions:{
+	questionText: string,
+	questionDetail?: string,
+	validResponses: ValidResponse[]
+    }[]//entidad
   }): Promise<QuestionnaireRecord> {
     const questionMessageRecord = new QuestionnaireRecord({
       questionText: options.questionText,
@@ -211,8 +224,13 @@ export class QuestionnaireService {
       signatureRequired: options.signatureRequired,
       state: options.state,
       validResponses: options.validResponses,
+      foo:"bar",//entidad
+      questions:[{
+	"questionText":"foo",
+	"questionDetail":"bar",
+	"validResponses":[{"text":"qux"}]
+      }]//entidad
     })
-
     return questionMessageRecord
   }
 

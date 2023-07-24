@@ -21,6 +21,11 @@ export declare class QuestionnaireApi {
         question: string;
         validResponses: ValidResponse[];
         detail?: string;
+        questions: {
+            questionText: string;
+            questionDetail?: string;
+            validResponses: ValidResponse[];
+        }[];
     }): Promise<QuestionnaireRecord>;
     /**
      * Create an answer message as the holder and send it in response to a question message

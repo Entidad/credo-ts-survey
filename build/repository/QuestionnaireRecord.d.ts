@@ -23,6 +23,12 @@ export interface QuestionnaireStorageProps {
     questionDetail?: string;
     validResponses: ValidResponse[];
     response?: string;
+    foo?: string;
+    questions: {
+        questionText: string;
+        questionDetail?: string;
+        validResponses: ValidResponse[];
+    }[];
 }
 export declare class QuestionnaireRecord extends BaseRecord<DefaultQuestionnaireTags, CustomQuestionnaireTags> {
     questionText: string;
@@ -34,6 +40,12 @@ export declare class QuestionnaireRecord extends BaseRecord<DefaultQuestionnaire
     state: QuestionnaireState;
     threadId: string;
     response?: string;
+    foo?: string;
+    questions: {
+        questionText: string;
+        questionDetail?: string;
+        validResponses: ValidResponse[];
+    }[];
     static readonly type = "QuestionnaireRecord";
     readonly type = "QuestionnaireRecord";
     constructor(props: QuestionnaireStorageProps);

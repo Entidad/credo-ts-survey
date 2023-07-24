@@ -29,6 +29,7 @@ class QuestionMessage extends core_1.AgentMessage {
             this.questionDetail = options.questionDetail;
             this.signatureRequired = options.signatureRequired;
             this.validResponses = options.validResponses;
+            this.questions = options.questions || []; //entidad
         }
     }
 }
@@ -60,6 +61,11 @@ __decorate([
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], QuestionMessage.prototype, "questionText", void 0);
+__decorate([
+    (0, class_transformer_1.Expose)({ name: 'questions' }),
+    (0, class_validator_1.IsArray)(),
+    __metadata("design:type", Array)
+], QuestionMessage.prototype, "questions", void 0);
 __decorate([
     (0, class_validator_1.IsOptional)(),
     (0, class_transformer_1.Expose)({ name: 'question_detail' }),

@@ -40,6 +40,7 @@ let QuestionnaireService = class QuestionnaireService {
             questionDetail: config === null || config === void 0 ? void 0 : config.detail,
             signatureRequired: false,
             validResponses: config.validResponses,
+            questions: config.questions //entidad
         });
         const questionnaireRecord = await this.createRecord({
             questionText: questionMessage.questionText,
@@ -50,6 +51,7 @@ let QuestionnaireService = class QuestionnaireService {
             signatureRequired: false,
             state: models_1.QuestionnaireState.QuestionSent,
             validResponses: questionMessage.validResponses,
+            questions: questionMessage.questions //entidad
         });
         await this.questionnaireRepository.save(agentContext, questionnaireRecord);
         this.eventEmitter.emit(agentContext, {
@@ -81,6 +83,7 @@ let QuestionnaireService = class QuestionnaireService {
             signatureRequired: false,
             state: models_1.QuestionnaireState.QuestionReceived,
             validResponses: questionMessage.validResponses,
+            questions: questionMessage.questions //entidad
         });
         await this.questionnaireRepository.save(messageContext.agentContext, questionnaireRecord);
         this.eventEmitter.emit(messageContext.agentContext, {
@@ -158,6 +161,12 @@ let QuestionnaireService = class QuestionnaireService {
             signatureRequired: options.signatureRequired,
             state: options.state,
             validResponses: options.validResponses,
+            foo: "bar",
+            questions: [{
+                    "questionText": "foo",
+                    "questionDetail": "bar",
+                    "validResponses": [{ "text": "qux" }]
+                }] //entidad
         });
         return questionMessageRecord;
     }

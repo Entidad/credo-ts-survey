@@ -40,6 +40,7 @@ let QuestionnaireApi = class QuestionnaireApi {
             question: config.question,
             validResponses: config.validResponses.map((item) => new models_1.ValidResponse(item)),
             detail: config === null || config === void 0 ? void 0 : config.detail,
+            questions: config.questions, //entidad
         });
         const outboundMessageContext = new core_1.OutboundMessageContext(questionMessage, {
             agentContext: this.agentContext,

@@ -12,6 +12,11 @@ export declare class QuestionMessage extends AgentMessage {
         signatureRequired?: boolean;
         id?: string;
         nonce?: string;
+        questions: {
+            questionText: string;
+            questionDetail?: string;
+            validResponses: ValidResponse[];
+        }[];
     });
     readonly type: string;
     static readonly type: import("@aries-framework/core/build/utils/messageType").ParsedMessageType;
@@ -19,5 +24,10 @@ export declare class QuestionMessage extends AgentMessage {
     signatureRequired?: boolean;
     validResponses: ValidResponse[];
     questionText: string;
+    questions: {
+        questionText: string;
+        questionDetail?: string;
+        validResponses: ValidResponse[];
+    }[];
     questionDetail?: string;
 }

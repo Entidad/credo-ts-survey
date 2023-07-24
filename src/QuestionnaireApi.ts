@@ -51,6 +51,11 @@ export class QuestionnaireApi {
       question: string
       validResponses: ValidResponse[]
       detail?: string
+      questions:{
+	questionText: string,
+	questionDetail?: string,
+	validResponses: ValidResponse[]
+      }[]//entidad
     }
   ) {
     const connection = await this.connectionService.getById(this.agentContext, connectionId)
@@ -63,6 +68,7 @@ export class QuestionnaireApi {
         question: config.question,
         validResponses: config.validResponses.map((item) => new ValidResponse(item)),
         detail: config?.detail,
+        questions: config.questions,//entidad
       }
     )
     const outboundMessageContext = new OutboundMessageContext(questionMessage, {

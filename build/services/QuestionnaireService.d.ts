@@ -21,6 +21,11 @@ export declare class QuestionnaireService {
         question: string;
         validResponses: ValidResponse[];
         detail?: string;
+        questions: {
+            questionText: string;
+            questionDetail?: string;
+            validResponses: ValidResponse[];
+        }[];
     }): Promise<{
         questionMessage: QuestionMessage;
         questionnaireRecord: QuestionnaireRecord;

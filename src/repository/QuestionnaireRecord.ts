@@ -29,6 +29,12 @@ export interface QuestionnaireStorageProps {
   validResponses: ValidResponse[]
 
   response?: string
+  foo?: string//entidad
+  questions:{
+	questionText: string,
+	questionDetail?: string,
+	validResponses: ValidResponse[]
+  }[]//entidad
 }
 
 export class QuestionnaireRecord extends BaseRecord<DefaultQuestionnaireTags, CustomQuestionnaireTags> {
@@ -41,6 +47,12 @@ export class QuestionnaireRecord extends BaseRecord<DefaultQuestionnaireTags, Cu
   public state!: QuestionnaireState
   public threadId!: string
   public response?: string
+  public foo?:string//entidad
+  public questions!:{
+	  questionText:string,
+	  questionDetail?:string,
+	  validResponses:ValidResponse[]
+  }[]//entidad
 
   public static readonly type = 'QuestionnaireRecord'
   public readonly type = QuestionnaireRecord.type
@@ -61,6 +73,8 @@ export class QuestionnaireRecord extends BaseRecord<DefaultQuestionnaireTags, Cu
       this.state = props.state
       this.threadId = props.threadId
       this.response = props.response
+      this.foo=props.foo//entidad
+      this.questions=props.questions??[]//entidad
     }
   }
 

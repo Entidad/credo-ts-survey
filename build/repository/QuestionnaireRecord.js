@@ -4,7 +4,7 @@ exports.QuestionnaireRecord = void 0;
 const core_1 = require("@aries-framework/core");
 class QuestionnaireRecord extends core_1.BaseRecord {
     constructor(props) {
-        var _a, _b, _c;
+        var _a, _b, _c, _d;
         super();
         this.type = QuestionnaireRecord.type;
         if (props) {
@@ -20,6 +20,8 @@ class QuestionnaireRecord extends core_1.BaseRecord {
             this.state = props.state;
             this.threadId = props.threadId;
             this.response = props.response;
+            this.foo = props.foo; //entidad
+            this.questions = (_d = props.questions) !== null && _d !== void 0 ? _d : []; //entidad
         }
     }
     getTags() {
