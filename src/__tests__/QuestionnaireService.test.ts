@@ -1,5 +1,5 @@
 import type { AgentConfig, AgentContext, Repository, Wallet } from '@aries-framework/core'
-import type { QuestionnaireStateChangedEvent, ValidResponse } from '@aries-framework/question-answer'
+import type { QuestionnaireStateChangedEvent, ValidResponse } from '@entidad/questionnaire'
 
 import { EventEmitter, SigningProviderRegistry, InboundMessageContext, DidExchangeState } from '@aries-framework/core'
 import { agentDependencies } from '@aries-framework/node'
@@ -18,7 +18,7 @@ import {
   QuestionnaireState,
   QuestionMessage,
   AnswerMessage,
-} from '@aries-framework/question-answer'
+} from '@entidad/questionnaire'
 
 jest.mock('../repository/QuestionnaireRepository')
 const QuestionnaireRepositoryMock = QuestionnaireRepository as jest.Mock<QuestionnaireRepository>

@@ -19,7 +19,7 @@ export class AnswerMessage extends AgentMessage {
 
   @IsValidMessageType(AnswerMessage.type)
   public readonly type = AnswerMessage.type.messageTypeUri
-  public static readonly type = parseMessageType('https://didcomm.org/questionanswer/1.0/answer')
+  public static readonly type = parseMessageType('https://didcomm.org/questionnaire/1.0/answer')
 
   @Expose({ name: 'response' })
   @IsString()

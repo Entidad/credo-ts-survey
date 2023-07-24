@@ -26,7 +26,7 @@ export class QuestionnaireModule implements Module {
     // Feature Registry
     featureRegistry.register(
       new Protocol({
-        id: 'https://didcomm.org/questionanswer/1.0',
+        id: 'https://didcomm.org/questionnaire/1.0',
         roles: [QuestionnaireRole.Questioner, QuestionnaireRole.Responder],
       })
     )

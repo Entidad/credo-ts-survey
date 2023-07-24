@@ -8,7 +8,7 @@ import {
   QuestionnaireRepository,
   QuestionnaireRole,
   QuestionnaireService,
-} from '@aries-framework/question-answer'
+} from '@entidad/questionnaire'
 
 const dependencyManager = {
   registerInstance: jest.fn(),
@@ -35,7 +35,7 @@ describe('QuestionnaireModule', () => {
     expect(featureRegistry.register).toHaveBeenCalledTimes(1)
     expect(featureRegistry.register).toHaveBeenCalledWith(
       new Protocol({
-        id: 'https://didcomm.org/questionanswer/1.0',
+        id: 'https://didcomm.org/questionnaire/1.0',
         roles: [QuestionnaireRole.Questioner, QuestionnaireRole.Responder],
       })
     )

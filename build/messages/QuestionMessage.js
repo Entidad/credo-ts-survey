@@ -32,7 +32,7 @@ class QuestionMessage extends core_1.AgentMessage {
         }
     }
 }
-QuestionMessage.type = (0, core_1.parseMessageType)('https://didcomm.org/questionanswer/1.0/question');
+QuestionMessage.type = (0, core_1.parseMessageType)('https://didcomm.org/questionnaire/1.0/question');
 __decorate([
     (0, core_1.IsValidMessageType)(QuestionMessage.type),
     __metadata("design:type", Object)

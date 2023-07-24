@@ -31,7 +31,7 @@ export class QuestionMessage extends AgentMessage {
 
   @IsValidMessageType(QuestionMessage.type)
   public readonly type = QuestionMessage.type.messageTypeUri
-  public static readonly type = parseMessageType('https://didcomm.org/questionanswer/1.0/question')
+  public static readonly type = parseMessageType('https://didcomm.org/questionnaire/1.0/question')
 
   @IsOptional()
   @IsString()

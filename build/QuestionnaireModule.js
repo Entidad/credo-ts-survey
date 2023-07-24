@@ -22,7 +22,7 @@ class QuestionnaireModule {
         dependencyManager.registerSingleton(repository_1.QuestionnaireRepository);
         // Feature Registry
         featureRegistry.register(new core_1.Protocol({
-            id: 'https://didcomm.org/questionanswer/1.0',
+            id: 'https://didcomm.org/questionnaire/1.0',
             roles: [QuestionnaireRole_1.QuestionnaireRole.Questioner, QuestionnaireRole_1.QuestionnaireRole.Responder],
         }));
     }

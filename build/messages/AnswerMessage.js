@@ -28,7 +28,7 @@ class AnswerMessage extends core_1.AgentMessage {
         }
     }
 }
-AnswerMessage.type = (0, core_1.parseMessageType)('https://didcomm.org/questionanswer/1.0/answer');
+AnswerMessage.type = (0, core_1.parseMessageType)('https://didcomm.org/questionnaire/1.0/answer');
 __decorate([
     (0, core_1.IsValidMessageType)(AnswerMessage.type),
     __metadata("design:type", Object)
