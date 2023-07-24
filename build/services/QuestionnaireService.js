@@ -24,6 +24,7 @@ let QuestionnaireService = class QuestionnaireService {
         this.questionnaireRepository = questionnaireRepository;
         this.eventEmitter = eventEmitter;
         this.logger = logger;
+        this.logger.warn("The '@entidad/questionnaire' module is experimental and could have unexpected breaking changes. When using this module, make sure to use strict versions for all @entidad packages.");
     }
     /**
      * Create a question message and a new Questionnaire record for the questioner role
