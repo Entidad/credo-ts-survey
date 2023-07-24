@@ -1,0 +1,12 @@
+#!/bin/bash
+QUESTION=Foo
+ANSWER=Bar
+rm -rf ./src
+cp -r ./bak/src ./src
+find ./src|while read FILE;do OUT=$(echo $FILE|sed "s/QuestionAnswer/FooBar/g");mv $FILE $OUT;done
+find ./src|while read FILE;do OUT=$(echo $FILE|sed "s/Question/Foo/g");mv $FILE $OUT;done
+find ./src|while read FILE;do OUT=$(echo $FILE|sed "s/Answer/Bar/g");mv $FILE $OUT;done
+history|grep sed
+sed -i -e 's/QuestionAnswer/FooBar/g' $(find ./src|grep "\.ts$")
+sed -i -e 's/Question/Foo/g' $(find ./src|grep "\.ts$")
+sed -i -e 's/Answer/Bar/g' $(find ./src|grep "\.ts$")

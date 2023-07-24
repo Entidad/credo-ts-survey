@@ -1,2 +1,2 @@
-export * from './QuestionAnswerRecord'
-export * from './QuestionAnswerRepository'
+export * from './FooBarRecord'
+export * from './FooBarRepository'
