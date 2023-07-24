@@ -1,16 +1,16 @@
-# Aries Framework JavaScript Test Module
+# Aries Framework JavaScript Questionnaire Module
 
-Test module for [Aries Framework JavaScript](https://github.com/hyperledger/aries-framework-javascript.git). Implements [Aries RFC 0113](https://github.com/hyperledger/aries-rfcs/blob/1795d5c2d36f664f88f5e8045042ace8e573808c/features/0113-question-answer/README.md).
+Questionnaire module for [Aries Framework JavaScript](https://github.com/hyperledger/aries-framework-javascript.git). Implements [Aries RFC 0113](https://github.com/hyperledger/aries-rfcs/blob/1795d5c2d36f664f88f5e8045042ace8e573808c/features/0113-question-answer/README.md).
 
 ```sh
-npm info "git+http://github.com/entidad/aries-agent-module-test.git" peerDependencies
+npm info "git+http://github.com/entidad/aries-agent-module-questionnaire.git" peerDependencies
 
 ```
 
 Then add the question-answer module to your project.
 
 ```sh
-yarn add git+http://github.com/entidad/aries-agent-module-test.git
+yarn add git+http://github.com/entidad/aries-agent-module-questionnaire.git
 ```
 
 ### Quick start
@@ -20,7 +20,7 @@ In order for this module to work, we have to inject it into the agent to access 
 ### Example of usage
 
 ```ts
-import { TestModule } from '@entidad/test'
+import { QuestionnaireModule } from '@entidad/test'
 
 const agent = new Agent({
   config: {
@@ -28,7 +28,7 @@ const agent = new Agent({
   },
   dependencies: agentDependencies,
   modules: {
-    test: new TestModule(),
+    test: new QuestionnaireModule(),
     /* other custom modules */
   },
 })
@@ -41,7 +41,7 @@ await agent.modules.test.foo(connectionId, {
   qux: 'klutz'
 })
 
-// Tests are received as TestStateChangedEvent
+// Questionnaires are received as QuestionnaireStateChangedEvent
 
 // To bar an answer related to a given test record
 await agent.modules.test.bar(barRecordId, 'Yes')
