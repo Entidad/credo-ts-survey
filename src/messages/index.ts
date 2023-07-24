@@ -1,2 +1,2 @@
-export * from './FooMessage'
-export * from './BarMessage'
+export * from './QuestionnaireMessage'
+export * from './SubmissionMessage'
