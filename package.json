@@ -1,5 +1,5 @@
 {
-  "name": "@aries-framework/question-answer",
+  "name": "@entidad/questionnaire",
   "main": "build/index",
   "types": "build/index",
   "version": "0.0.1",
@@ -10,11 +10,11 @@
   "publishConfig": {
     "access": "public"
   },
-  "homepage": "https://github.com/Entidad/aries-agent-module-test",
+  "homepage": "https://github.com/Entidad/aries-agent-module-questionnaire",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Entidad/aries-agent-module-test",
-    "directory": "packages/test"
+    "url": "https://github.com/Entidad/aries-agent-module-questionnaire",
+    "directory": "packages/questionnaire"
   },
   "scripts": {
     "build": "yarn run clean && yarn run compile",
