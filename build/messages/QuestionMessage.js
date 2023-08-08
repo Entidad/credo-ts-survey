@@ -13,7 +13,6 @@ exports.QuestionMessage = void 0;
 const core_1 = require("@aries-framework/core");
 const class_transformer_1 = require("class-transformer");
 const class_validator_1 = require("class-validator");
-const models_1 = require("../models");
 class QuestionMessage extends core_1.AgentMessage {
     /**
      * Create new QuestionMessage instance.
@@ -25,10 +24,10 @@ class QuestionMessage extends core_1.AgentMessage {
         if (options) {
             this.id = options.id || this.generateId();
             this.nonce = options.nonce;
-            this.questionText = options.questionText;
-            this.questionDetail = options.questionDetail;
+            //this.questionText = options.questionText
+            //this.questionDetail = options.questionDetail
             this.signatureRequired = options.signatureRequired;
-            this.validResponses = options.validResponses;
+            //this.validResponses = options.validResponses
             this.questions = options.questions || []; //entidad
         }
     }
@@ -50,27 +49,9 @@ __decorate([
     __metadata("design:type", Boolean)
 ], QuestionMessage.prototype, "signatureRequired", void 0);
 __decorate([
-    (0, class_transformer_1.Expose)({ name: 'valid_responses' }),
-    (0, class_transformer_1.Type)(() => models_1.ValidResponse),
-    (0, class_validator_1.ValidateNested)({ each: true }),
-    (0, class_validator_1.IsInstance)(models_1.ValidResponse, { each: true }),
-    __metadata("design:type", Array)
-], QuestionMessage.prototype, "validResponses", void 0);
-__decorate([
-    (0, class_transformer_1.Expose)({ name: 'question_text' }),
-    (0, class_validator_1.IsString)(),
-    __metadata("design:type", String)
-], QuestionMessage.prototype, "questionText", void 0);
-__decorate([
     (0, class_transformer_1.Expose)({ name: 'questions' }),
     (0, class_validator_1.IsArray)(),
     __metadata("design:type", Array)
 ], QuestionMessage.prototype, "questions", void 0);
-__decorate([
-    (0, class_validator_1.IsOptional)(),
-    (0, class_transformer_1.Expose)({ name: 'question_detail' }),
-    (0, class_validator_1.IsString)(),
-    __metadata("design:type", String)
-], QuestionMessage.prototype, "questionDetail", void 0);
 exports.QuestionMessage = QuestionMessage;
 //# sourceMappingURL=QuestionMessage.js.map

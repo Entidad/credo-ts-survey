@@ -24,12 +24,11 @@ export interface QuestionnaireStorageProps {
   tags?: CustomQuestionnaireTags
   threadId: string
 
-  questionText: string
-  questionDetail?: string
-  validResponses: ValidResponse[]
+  //questionText: string
+  //questionDetail?: string
+  //validResponses: ValidResponse[]
 
   response?: string
-  foo?: string//entidad
   questions:{
 	questionText: string,
 	questionDetail?: string,
@@ -38,16 +37,15 @@ export interface QuestionnaireStorageProps {
 }
 
 export class QuestionnaireRecord extends BaseRecord<DefaultQuestionnaireTags, CustomQuestionnaireTags> {
-  public questionText!: string
-  public questionDetail?: string
-  public validResponses!: ValidResponse[]
+  //public questionText!: string
+  //public questionDetail?: string
+  //public validResponses!: ValidResponse[]
   public connectionId!: string
   public role!: QuestionnaireRole
   public signatureRequired!: boolean
   public state!: QuestionnaireState
   public threadId!: string
   public response?: string
-  public foo?:string//entidad
   public questions!:{
 	  questionText:string,
 	  questionDetail?:string,
@@ -63,9 +61,9 @@ export class QuestionnaireRecord extends BaseRecord<DefaultQuestionnaireTags, Cu
     if (props) {
       this.id = props.id ?? utils.uuid()
       this.createdAt = props.createdAt ?? new Date()
-      this.questionText = props.questionText
-      this.questionDetail = props.questionDetail
-      this.validResponses = props.validResponses
+      //this.questionText = props.questionText
+      //this.questionDetail = props.questionDetail
+      //this.validResponses = props.validResponses
       this.connectionId = props.connectionId
       this._tags = props.tags ?? {}
       this.role = props.role
@@ -73,7 +71,6 @@ export class QuestionnaireRecord extends BaseRecord<DefaultQuestionnaireTags, Cu
       this.state = props.state
       this.threadId = props.threadId
       this.response = props.response
-      this.foo=props.foo//entidad
       this.questions=props.questions??[]//entidad
     }
   }

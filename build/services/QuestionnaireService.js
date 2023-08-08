@@ -36,21 +36,21 @@ let QuestionnaireService = class QuestionnaireService {
      */
     async createQuestion(agentContext, connectionId, config) {
         const questionMessage = new messages_1.QuestionMessage({
-            questionText: config.question,
-            questionDetail: config === null || config === void 0 ? void 0 : config.detail,
+            //questionText: config.question,
+            //questionDetail: config?.detail,
             signatureRequired: false,
-            validResponses: config.validResponses,
+            //validResponses: config.validResponses,
             questions: config.questions //entidad
         });
         const questionnaireRecord = await this.createRecord({
-            questionText: questionMessage.questionText,
-            questionDetail: questionMessage.questionDetail,
+            //questionText: questionMessage.questionText,
+            //questionDetail: questionMessage.questionDetail,
             threadId: questionMessage.threadId,
             connectionId: connectionId,
             role: QuestionnaireRole_1.QuestionnaireRole.Questioner,
             signatureRequired: false,
             state: models_1.QuestionnaireState.QuestionSent,
-            validResponses: questionMessage.validResponses,
+            //validResponses: questionMessage.validResponses,
             questions: questionMessage.questions //entidad
         });
         await this.questionnaireRepository.save(agentContext, questionnaireRecord);
@@ -75,14 +75,14 @@ let QuestionnaireService = class QuestionnaireService {
             throw new core_1.AriesFrameworkError(`Question answer record with thread Id ${questionMessage.id} already exists.`);
         }
         const questionnaireRecord = await this.createRecord({
-            questionText: questionMessage.questionText,
-            questionDetail: questionMessage.questionDetail,
+            //questionText: questionMessage.questionText,
+            //questionDetail: questionMessage.questionDetail,
             connectionId: connection === null || connection === void 0 ? void 0 : connection.id,
             threadId: questionMessage.threadId,
             role: QuestionnaireRole_1.QuestionnaireRole.Responder,
             signatureRequired: false,
             state: models_1.QuestionnaireState.QuestionReceived,
-            validResponses: questionMessage.validResponses,
+            //validResponses: questionMessage.validResponses,
             questions: questionMessage.questions //entidad
         });
         await this.questionnaireRepository.save(messageContext.agentContext, questionnaireRecord);
@@ -103,12 +103,13 @@ let QuestionnaireService = class QuestionnaireService {
         const answerMessage = new messages_1.AnswerMessage({ response: response, threadId: questionnaireRecord.threadId });
         questionnaireRecord.assertState(models_1.QuestionnaireState.QuestionReceived);
         questionnaireRecord.response = response;
+        /* entidad: todo: fix for multiple answers
         if (questionnaireRecord.validResponses.some((e) => e.text === response)) {
-            await this.updateState(agentContext, questionnaireRecord, models_1.QuestionnaireState.AnswerSent);
+          await this.updateState(agentContext, questionnaireRecord, QuestionnaireState.AnswerSent)
+        } else {
+          throw new AriesFrameworkError(`Response does not match valid responses`)
         }
-        else {
-            throw new core_1.AriesFrameworkError(`Response does not match valid responses`);
-        }
+        */
         return { answerMessage, questionnaireRecord };
     }
     /**
@@ -153,20 +154,23 @@ let QuestionnaireService = class QuestionnaireService {
     }
     async createRecord(options) {
         const questionMessageRecord = new repository_1.QuestionnaireRecord({
-            questionText: options.questionText,
-            questionDetail: options.questionDetail,
+            //questionText: options.questionText,
+            //questionDetail: options.questionDetail,
             connectionId: options.connectionId,
             threadId: options.threadId,
             role: options.role,
             signatureRequired: options.signatureRequired,
             state: options.state,
-            validResponses: options.validResponses,
-            foo: "bar",
-            questions: [{
-                    "questionText": "foo",
-                    "questionDetail": "bar",
-                    "validResponses": [{ "text": "qux" }]
-                }] //entidad
+            //validResponses: options.validResponses,
+            //foo:"bar",//entidad
+            /*
+            questions:[{
+          "questionText":"foo",
+          "questionDetail":"bar",
+          "validResponses":[{"text":"qux"}]
+            }]//entidad
+            */
+            questions: options.questions
         });
         return questionMessageRecord;
     }

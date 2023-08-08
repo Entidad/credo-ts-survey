@@ -6,9 +6,6 @@ export declare class QuestionMessage extends AgentMessage {
      * @param options
      */
     constructor(options: {
-        questionText: string;
-        questionDetail?: string;
-        validResponses: ValidResponse[];
         signatureRequired?: boolean;
         id?: string;
         nonce?: string;
@@ -22,12 +19,9 @@ export declare class QuestionMessage extends AgentMessage {
     static readonly type: import("@aries-framework/core/build/utils/messageType").ParsedMessageType;
     nonce?: string;
     signatureRequired?: boolean;
-    validResponses: ValidResponse[];
-    questionText: string;
     questions: {
         questionText: string;
         questionDetail?: string;
         validResponses: ValidResponse[];
     }[];
-    questionDetail?: string;
 }

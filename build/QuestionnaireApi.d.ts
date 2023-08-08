@@ -18,9 +18,6 @@ export declare class QuestionnaireApi {
      * @returns Questionnaire record
      */
     sendQuestion(connectionId: string, config: {
-        question: string;
-        validResponses: ValidResponse[];
-        detail?: string;
         questions: {
             questionText: string;
             questionDetail?: string;

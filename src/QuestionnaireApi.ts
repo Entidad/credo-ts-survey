@@ -48,9 +48,9 @@ export class QuestionnaireApi {
   public async sendQuestion(
     connectionId: string,
     config: {
-      question: string
-      validResponses: ValidResponse[]
-      detail?: string
+      //question: string
+      //validResponses: ValidResponse[]
+      //detail?: string
       questions:{
 	questionText: string,
 	questionDetail?: string,
@@ -65,9 +65,9 @@ export class QuestionnaireApi {
       this.agentContext,
       connectionId,
       {
-        question: config.question,
-        validResponses: config.validResponses.map((item) => new ValidResponse(item)),
-        detail: config?.detail,
+        //question: config.question,
+        //validResponses: config.validResponses.map((item) => new ValidResponse(item)),
+        //detail: config?.detail,
         questions: config.questions,//entidad
       }
     )

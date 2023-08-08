@@ -38,9 +38,9 @@ export class QuestionnaireService {
     agentContext: AgentContext,
     connectionId: string,
     config: {
-      question: string
-      validResponses: ValidResponse[]
-      detail?: string,
+      //question: string
+      //validResponses: ValidResponse[]
+      //detail?: string,
       questions:{
 	questionText: string,
 	questionDetail?: string,
@@ -49,22 +49,22 @@ export class QuestionnaireService {
     }
   ) {
     const questionMessage = new QuestionMessage({
-      questionText: config.question,
-      questionDetail: config?.detail,
+      //questionText: config.question,
+      //questionDetail: config?.detail,
       signatureRequired: false,
-      validResponses: config.validResponses,
+      //validResponses: config.validResponses,
       questions: config.questions//entidad
     })
 
     const questionnaireRecord = await this.createRecord({
-      questionText: questionMessage.questionText,
-      questionDetail: questionMessage.questionDetail,
+      //questionText: questionMessage.questionText,
+      //questionDetail: questionMessage.questionDetail,
       threadId: questionMessage.threadId,
       connectionId: connectionId,
       role: QuestionnaireRole.Questioner,
       signatureRequired: false,
       state: QuestionnaireState.QuestionSent,
-      validResponses: questionMessage.validResponses,
+      //validResponses: questionMessage.validResponses,
       questions:questionMessage.questions//entidad
     })
 
@@ -101,14 +101,14 @@ export class QuestionnaireService {
       throw new AriesFrameworkError(`Question answer record with thread Id ${questionMessage.id} already exists.`)
     }
     const questionnaireRecord = await this.createRecord({
-      questionText: questionMessage.questionText,
-      questionDetail: questionMessage.questionDetail,
+      //questionText: questionMessage.questionText,
+      //questionDetail: questionMessage.questionDetail,
       connectionId: connection?.id,
       threadId: questionMessage.threadId,
       role: QuestionnaireRole.Responder,
       signatureRequired: false,
       state: QuestionnaireState.QuestionReceived,
-      validResponses: questionMessage.validResponses,
+      //validResponses: questionMessage.validResponses,
       questions: questionMessage.questions//entidad
     })
 
@@ -135,12 +135,13 @@ export class QuestionnaireService {
     questionnaireRecord.assertState(QuestionnaireState.QuestionReceived)
 
     questionnaireRecord.response = response
-
+	/* entidad: todo: fix for multiple answers
     if (questionnaireRecord.validResponses.some((e) => e.text === response)) {
       await this.updateState(agentContext, questionnaireRecord, QuestionnaireState.AnswerSent)
     } else {
       throw new AriesFrameworkError(`Response does not match valid responses`)
     }
+	*/
     return { answerMessage, questionnaireRecord }
   }
 
@@ -201,14 +202,14 @@ export class QuestionnaireService {
   }
 
   private async createRecord(options: {
-    questionText: string
-    questionDetail?: string
+    //questionText: string
+    //questionDetail?: string
     connectionId: string
     role: QuestionnaireRole
     signatureRequired: boolean
     state: QuestionnaireState
     threadId: string
-    validResponses: ValidResponse[],
+    //validResponses: ValidResponse[],
     questions:{
 	questionText: string,
 	questionDetail?: string,
@@ -216,20 +217,23 @@ export class QuestionnaireService {
     }[]//entidad
   }): Promise<QuestionnaireRecord> {
     const questionMessageRecord = new QuestionnaireRecord({
-      questionText: options.questionText,
-      questionDetail: options.questionDetail,
+      //questionText: options.questionText,
+      //questionDetail: options.questionDetail,
       connectionId: options.connectionId,
       threadId: options.threadId,
       role: options.role,
       signatureRequired: options.signatureRequired,
       state: options.state,
-      validResponses: options.validResponses,
-      foo:"bar",//entidad
+      //validResponses: options.validResponses,
+      //foo:"bar",//entidad
+      /*
       questions:[{
 	"questionText":"foo",
 	"questionDetail":"bar",
 	"validResponses":[{"text":"qux"}]
       }]//entidad
+      */
+      questions:options.questions
     })
     return questionMessageRecord
   }

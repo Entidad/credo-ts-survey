@@ -21,7 +21,8 @@
     "clean": "rimraf ./build",
     "compile": "tsc -p tsconfig.build.json",
     "prepublishOnly": "yarn run build",
-    "test": "jest"
+    "test": "jest",
+    "copy": "mkdir -p /mnt/c/Users/ockert/src/entidad/fwos-demo-app-main/javascriptsource/aries_sdk/node_modules/@entidad/&&rm -rf /mnt/c/Users/ockert/src/entidad/fwos-demo-app-main/javascriptsource/aries_sdk/node_modules/@entidad/questionnaire/src /mnt/c/Users/ockert/src/entidad/fwos-demo-app-main/javascriptsource/aries_sdk/node_modules/@entidad/questionnaire/build&&cp -r ./src /mnt/c/Users/ockert/src/entidad/fwos-demo-app-main/javascriptsource/aries_sdk/node_modules/@entidad/questionnaire&&cp -r ./build/ /mnt/c/Users/ockert/src/entidad/fwos-demo-app-main/javascriptsource/aries_sdk/node_modules/@entidad/questionnaire" 
   },
   "dependencies": {
     "@aries-framework/core": "0.4.0",

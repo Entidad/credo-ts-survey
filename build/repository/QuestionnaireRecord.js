@@ -10,9 +10,9 @@ class QuestionnaireRecord extends core_1.BaseRecord {
         if (props) {
             this.id = (_a = props.id) !== null && _a !== void 0 ? _a : core_1.utils.uuid();
             this.createdAt = (_b = props.createdAt) !== null && _b !== void 0 ? _b : new Date();
-            this.questionText = props.questionText;
-            this.questionDetail = props.questionDetail;
-            this.validResponses = props.validResponses;
+            //this.questionText = props.questionText
+            //this.questionDetail = props.questionDetail
+            //this.validResponses = props.validResponses
             this.connectionId = props.connectionId;
             this._tags = (_c = props.tags) !== null && _c !== void 0 ? _c : {};
             this.role = props.role;
@@ -20,7 +20,6 @@ class QuestionnaireRecord extends core_1.BaseRecord {
             this.state = props.state;
             this.threadId = props.threadId;
             this.response = props.response;
-            this.foo = props.foo; //entidad
             this.questions = (_d = props.questions) !== null && _d !== void 0 ? _d : []; //entidad
         }
     }

@@ -10,9 +10,9 @@ export class QuestionMessage extends AgentMessage {
    * @param options
    */
   public constructor(options: {
-    questionText: string
-    questionDetail?: string
-    validResponses: ValidResponse[]
+    //questionText: string
+    //questionDetail?: string
+    //validResponses: ValidResponse[]
     signatureRequired?: boolean
     id?: string
     nonce?: string
@@ -27,10 +27,10 @@ export class QuestionMessage extends AgentMessage {
     if (options) {
       this.id = options.id || this.generateId()
       this.nonce = options.nonce
-      this.questionText = options.questionText
-      this.questionDetail = options.questionDetail
+      //this.questionText = options.questionText
+      //this.questionDetail = options.questionDetail
       this.signatureRequired = options.signatureRequired
-      this.validResponses = options.validResponses
+      //this.validResponses = options.validResponses
       this.questions = options.questions||[]//entidad
     }
   }
@@ -48,15 +48,15 @@ export class QuestionMessage extends AgentMessage {
   @Expose({ name: 'signature_required' })
   public signatureRequired?: boolean
 
-  @Expose({ name: 'valid_responses' })
-  @Type(() => ValidResponse)
-  @ValidateNested({ each: true })
-  @IsInstance(ValidResponse, { each: true })
-  public validResponses!: ValidResponse[]
+//  @Expose({ name: 'valid_responses' })
+//  @Type(() => ValidResponse)
+//  @ValidateNested({ each: true })
+//  @IsInstance(ValidResponse, { each: true })
+//  public validResponses!: ValidResponse[]
 
-  @Expose({ name: 'question_text' })
-  @IsString()
-  public questionText!: string
+//  @Expose({ name: 'question_text' })
+//  @IsString()
+//  public questionText!: string
 
   @Expose({ name: 'questions' })
   @IsArray()
@@ -66,8 +66,8 @@ export class QuestionMessage extends AgentMessage {
 	    validResponses: ValidResponse[]
   }[]//entidad
 
-  @IsOptional()
-  @Expose({ name: 'question_detail' })
-  @IsString()
-  public questionDetail?: string
+//  @IsOptional()
+//  @Expose({ name: 'question_detail' })
+//  @IsString()
+//  public questionDetail?: string
 }

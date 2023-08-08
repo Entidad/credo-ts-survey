@@ -18,9 +18,6 @@ export declare class QuestionnaireService {
      * @returns question message and Questionnaire record
      */
     createQuestion(agentContext: AgentContext, connectionId: string, config: {
-        question: string;
-        validResponses: ValidResponse[];
-        detail?: string;
         questions: {
             questionText: string;
             questionDetail?: string;

@@ -12,7 +12,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.QuestionnaireApi = void 0;
 const core_1 = require("@aries-framework/core");
 const handlers_1 = require("./handlers");
-const models_1 = require("./models");
 const services_1 = require("./services");
 let QuestionnaireApi = class QuestionnaireApi {
     constructor(questionnaireService, messageSender, connectionService, agentContext) {
@@ -37,9 +36,9 @@ let QuestionnaireApi = class QuestionnaireApi {
         const connection = await this.connectionService.getById(this.agentContext, connectionId);
         connection.assertReady();
         const { questionMessage, questionnaireRecord } = await this.questionnaireService.createQuestion(this.agentContext, connectionId, {
-            question: config.question,
-            validResponses: config.validResponses.map((item) => new models_1.ValidResponse(item)),
-            detail: config === null || config === void 0 ? void 0 : config.detail,
+            //question: config.question,
+            //validResponses: config.validResponses.map((item) => new ValidResponse(item)),
+            //detail: config?.detail,
             questions: config.questions, //entidad
         });
         const outboundMessageContext = new core_1.OutboundMessageContext(questionMessage, {

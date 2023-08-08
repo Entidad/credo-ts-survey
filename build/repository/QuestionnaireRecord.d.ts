@@ -19,11 +19,7 @@ export interface QuestionnaireStorageProps {
     state: QuestionnaireState;
     tags?: CustomQuestionnaireTags;
     threadId: string;
-    questionText: string;
-    questionDetail?: string;
-    validResponses: ValidResponse[];
     response?: string;
-    foo?: string;
     questions: {
         questionText: string;
         questionDetail?: string;
@@ -31,16 +27,12 @@ export interface QuestionnaireStorageProps {
     }[];
 }
 export declare class QuestionnaireRecord extends BaseRecord<DefaultQuestionnaireTags, CustomQuestionnaireTags> {
-    questionText: string;
-    questionDetail?: string;
-    validResponses: ValidResponse[];
     connectionId: string;
     role: QuestionnaireRole;
     signatureRequired: boolean;
     state: QuestionnaireState;
     threadId: string;
     response?: string;
-    foo?: string;
     questions: {
         questionText: string;
         questionDetail?: string;
