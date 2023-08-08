@@ -41,7 +41,7 @@ export declare class QuestionnaireService {
      * @param response response used in answer message
      * @returns answer message and Questionnaire record
      */
-    createAnswer(agentContext: AgentContext, questionnaireRecord: QuestionnaireRecord, response: string): Promise<{
+    createAnswer(agentContext: AgentContext, questionnaireRecord: QuestionnaireRecord, response: string[]): Promise<{
         answerMessage: AnswerMessage;
         questionnaireRecord: QuestionnaireRecord;
     }>;

@@ -31,7 +31,7 @@ export declare class QuestionnaireApi {
      * @param response response included in the answer message
      * @returns Questionnaire record
      */
-    sendAnswer(questionRecordId: string, response: string): Promise<QuestionnaireRecord>;
+    sendAnswer(questionRecordId: string, response: string[]): Promise<QuestionnaireRecord>;
     /**
      * Get all Questionnaire records
      *

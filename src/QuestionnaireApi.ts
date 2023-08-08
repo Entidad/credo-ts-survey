@@ -89,7 +89,7 @@ export class QuestionnaireApi {
    * @param response response included in the answer message
    * @returns Questionnaire record
    */
-  public async sendAnswer(questionRecordId: string, response: string) {
+  public async sendAnswer(questionRecordId: string, response: string[]) {
     const questionRecord = await this.questionnaireService.getById(this.agentContext, questionRecordId)
 
     const { answerMessage, questionnaireRecord } = await this.questionnaireService.createAnswer(

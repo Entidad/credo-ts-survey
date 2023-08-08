@@ -129,7 +129,7 @@ export class QuestionnaireService {
    * @param response response used in answer message
    * @returns answer message and Questionnaire record
    */
-  public async createAnswer(agentContext: AgentContext, questionnaireRecord: QuestionnaireRecord, response: string) {
+  public async createAnswer(agentContext: AgentContext, questionnaireRecord: QuestionnaireRecord, response: string[]) {
     const answerMessage = new AnswerMessage({ response: response, threadId: questionnaireRecord.threadId })
 
     questionnaireRecord.assertState(QuestionnaireState.QuestionReceived)

@@ -1,13 +1,13 @@
 import { AgentMessage, IsValidMessageType, parseMessageType } from '@aries-framework/core'
 import { Expose } from 'class-transformer'
-import { IsString } from 'class-validator'
+import { IsString, IsArray } from 'class-validator'
 
 export class AnswerMessage extends AgentMessage {
   /**
    * Create new AnswerMessage instance.
    * @param options
    */
-  public constructor(options: { id?: string; response: string; threadId: string }) {
+  public constructor(options: { id?: string; response: string[]; threadId: string }) {
     super()
 
     if (options) {
@@ -22,6 +22,7 @@ export class AnswerMessage extends AgentMessage {
   public static readonly type = parseMessageType('https://didcomm.org/questionnaire/1.0/answer')
 
   @Expose({ name: 'response' })
-  @IsString()
-  public response!: string
+  //@IsString()
+  @IsArray()
+  public response!: string[]
 }

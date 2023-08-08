@@ -28,7 +28,7 @@ export interface QuestionnaireStorageProps {
   //questionDetail?: string
   //validResponses: ValidResponse[]
 
-  response?: string
+  response?: string[]
   questions:{
 	questionText: string,
 	questionDetail?: string,
@@ -45,7 +45,7 @@ export class QuestionnaireRecord extends BaseRecord<DefaultQuestionnaireTags, Cu
   public signatureRequired!: boolean
   public state!: QuestionnaireState
   public threadId!: string
-  public response?: string
+  public response?: string[]
   public questions!:{
 	  questionText:string,
 	  questionDetail?:string,

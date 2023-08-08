@@ -6,10 +6,10 @@ export declare class AnswerMessage extends AgentMessage {
      */
     constructor(options: {
         id?: string;
-        response: string;
+        response: string[];
         threadId: string;
     });
     readonly type: string;
     static readonly type: import("@aries-framework/core/build/utils/messageType").ParsedMessageType;
-    response: string;
+    response: string[];
 }

@@ -34,9 +34,11 @@ __decorate([
     __metadata("design:type", Object)
 ], AnswerMessage.prototype, "type", void 0);
 __decorate([
-    (0, class_transformer_1.Expose)({ name: 'response' }),
-    (0, class_validator_1.IsString)(),
-    __metadata("design:type", String)
+    (0, class_transformer_1.Expose)({ name: 'response' })
+    //@IsString()
+    ,
+    (0, class_validator_1.IsArray)(),
+    __metadata("design:type", Array)
 ], AnswerMessage.prototype, "response", void 0);
 exports.AnswerMessage = AnswerMessage;
 //# sourceMappingURL=AnswerMessage.js.map
