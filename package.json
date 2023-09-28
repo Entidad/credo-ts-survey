@@ -25,14 +25,14 @@
     "copy": "mkdir -p /mnt/c/Users/ockert/src/entidad/fwos-demo-app-main/javascriptsource/aries_sdk/node_modules/@entidad/&&rm -rf /mnt/c/Users/ockert/src/entidad/fwos-demo-app-main/javascriptsource/aries_sdk/node_modules/@entidad/questionnaire/src /mnt/c/Users/ockert/src/entidad/fwos-demo-app-main/javascriptsource/aries_sdk/node_modules/@entidad/questionnaire/build&&cp -r ./src /mnt/c/Users/ockert/src/entidad/fwos-demo-app-main/javascriptsource/aries_sdk/node_modules/@entidad/questionnaire&&cp -r ./build/ /mnt/c/Users/ockert/src/entidad/fwos-demo-app-main/javascriptsource/aries_sdk/node_modules/@entidad/questionnaire" 
   },
   "dependencies": {
-    "@aries-framework/core": "0.4.0",
+    "@aries-framework/core": "0.4.1",
     "class-transformer": "0.5.1",
     "class-validator": "0.14.0",
     "rxjs": "^7.2.0",
     "node-fetch": "^2.6.1"
   },
   "devDependencies": {
-    "@aries-framework/node": "0.4.0",
+    "@aries-framework/node": "0.4.1",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^4.4.0",
     "typescript": "~4.9.5",
