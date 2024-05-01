@@ -10,10 +10,10 @@
   "publishConfig": {
     "access": "public"
   },
-  "homepage": "https://github.com/Entidad/credo-agent-module-questionnaire",
+  "homepage": "https://github.com/Entidad/aries-agent-module-questionnaire",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Entidad/credo-agent-module-questionnaire",
+    "url": "https://github.com/Entidad/aries-agent-module-questionnaire",
     "directory": "packages/questionnaire"
   },
   "scripts": {
