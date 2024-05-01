@@ -2,7 +2,7 @@ import type { QuestionnaireStateChangedEvent } from '../QuestionnaireEvents'
 import type { ValidResponse } from '../models'
 import type { AgentContext, InboundMessageContext, Query } from '@credo-ts/core'
 
-import { AriesFrameworkError, EventEmitter, inject, injectable, InjectionSymbols, Logger } from '@credo-ts/core'
+import { CredoError, EventEmitter, inject, injectable, InjectionSymbols, Logger } from '@credo-ts/core'
 
 import { QuestionnaireEventTypes } from '../QuestionnaireEvents'
 import { QuestionnaireRole } from '../QuestionnaireRole'
@@ -98,7 +98,7 @@ export class QuestionnaireService {
       questionMessage.id
     )
     if (questionRecord) {
-      throw new AriesFrameworkError(`Question answer record with thread Id ${questionMessage.id} already exists.`)
+      throw new CredoError(`Question answer record with thread Id ${questionMessage.id} already exists.`)
     }
     const questionnaireRecord = await this.createRecord({
       //questionText: questionMessage.questionText,
@@ -139,7 +139,7 @@ export class QuestionnaireService {
     if (questionnaireRecord.validResponses.some((e) => e.text === response)) {
       await this.updateState(agentContext, questionnaireRecord, QuestionnaireState.AnswerSent)
     } else {
-      throw new AriesFrameworkError(`Response does not match valid responses`)
+      throw new CredoError(`Response does not match valid responses`)
     }
 	*/
     return { answerMessage, questionnaireRecord }
@@ -163,7 +163,7 @@ export class QuestionnaireService {
       answerMessage.threadId
     )
     if (!questionnaireRecord) {
-      throw new AriesFrameworkError(`Question Answer record with thread Id ${answerMessage.threadId} not found.`)
+      throw new CredoError(`Question Answer record with thread Id ${answerMessage.threadId} not found.`)
     }
     questionnaireRecord.assertState(QuestionnaireState.QuestionSent)
     questionnaireRecord.assertRole(QuestionnaireRole.Questioner)
