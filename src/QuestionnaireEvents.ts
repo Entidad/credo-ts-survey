@@ -1,6 +1,6 @@
 import type { QuestionnaireState } from './models'
 import type { QuestionnaireRecord } from './repository'
-import type { BaseEvent } from '@aries-framework/core'
+import type { BaseEvent } from '@credo-ts/core'
 
 export enum QuestionnaireEventTypes {
   QuestionnaireStateChanged = 'QuestionnaireStateChanged',

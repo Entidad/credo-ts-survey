@@ -1,5 +1,5 @@
 import type { QuestionnaireRecord } from './repository'
-import type { Query } from '@aries-framework/core'
+import type { Query } from '@credo-ts/core'
 
 import {
   AgentContext,
@@ -7,7 +7,7 @@ import {
   OutboundMessageContext,
   injectable,
   MessageSender,
-} from '@aries-framework/core'
+} from '@credo-ts/core'
 
 import { AnswerMessageHandler, QuestionMessageHandler } from './handlers'
 import { ValidResponse } from './models'

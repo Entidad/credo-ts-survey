@@ -1,7 +1,7 @@
-import type { DependencyManager, FeatureRegistry, Module } from '@aries-framework/core'
-import { AgentConfig } from '@aries-framework/core'
+import type { DependencyManager, FeatureRegistry, Module } from '@credo-ts/core'
+import { AgentConfig } from '@credo-ts/core'
 
-import { Protocol } from '@aries-framework/core'
+import { Protocol } from '@credo-ts/core'
 
 import { QuestionnaireApi } from './QuestionnaireApi'
 import { QuestionnaireRole } from './QuestionnaireRole'
