@@ -3,14 +3,14 @@
 Questionnaire module for [Aries Framework JavaScript](https://github.com/hyperledger/aries-framework-javascript.git). Implements [Aries RFC 0113](https://github.com/hyperledger/aries-rfcs/blob/1795d5c2d36f664f88f5e8045042ace8e573808c/features/0113-question-answer/README.md).
 
 ```sh
-npm info "git+http://github.com/entidad/credo-agent-module-questionnaire.git" peerDependencies
+npm info "git+http://github.com/entidad/credo-ts-survey.git" peerDependencies
 
 ```
 
 Then add the question-answer module to your project.
 
 ```sh
-yarn add git+http://github.com/entidad/credo-agent-module-questionnaire.git
+yarn add git+http://github.com/entidad/credo-ts-survey.git
 ```
 
 ### Quick start
