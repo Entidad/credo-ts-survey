@@ -31,7 +31,7 @@
     "rxjs": "^7.2.0"
   },
   "devDependencies": {
-    "@credo-framework/node": "0.5.2",
+    "@credo-ts/node": "0.5.2",
     "@babel/traverse": "^7.23.2",
     "@types/jest": "^29.5.0",
     "@types/node-fetch": "2.6.2",
