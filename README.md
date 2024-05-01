@@ -1,6 +1,6 @@
-# Aries Framework JavaScript Questionnaire Module
+# Credo-ts Survey Module
 
-Questionnaire module for [Aries Framework JavaScript](https://github.com/hyperledger/aries-framework-javascript.git). Implements [Aries RFC 0113](https://github.com/hyperledger/aries-rfcs/blob/1795d5c2d36f664f88f5e8045042ace8e573808c/features/0113-question-answer/README.md).
+Survey module for [Aries Framework JavaScript](https://github.com/hyperledger/aries-framework-javascript.git). Implements [Aries RFC 0113](https://github.com/hyperledger/aries-rfcs/blob/1795d5c2d36f664f88f5e8045042ace8e573808c/features/0113-question-answer/README.md).
 
 ```sh
 npm info "git+http://github.com/entidad/credo-ts-survey.git" peerDependencies
