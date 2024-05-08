@@ -3,7 +3,7 @@
  *
  * @see https://github.com/hyperledger/aries-rfcs/blob/main/features/0113-question-answer/README.md
  */
-export enum QuestionnaireState {
+export enum SurveyState {
   QuestionSent = 'question-sent',
   QuestionReceived = 'question-received',
   AnswerReceived = 'answer-received',

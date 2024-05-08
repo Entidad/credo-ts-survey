@@ -1,4 +1,4 @@
-export enum QuestionnaireRole {
+export enum SurveyRole {
   Questioner = 'questioner',
   Responder = 'responder',
 }

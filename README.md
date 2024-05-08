@@ -20,7 +20,7 @@ In order for this module to work, we have to inject it into the agent to access 
 ### Example of usage
 
 ```ts
-import { QuestionnaireModule } from '@entidad/questionnaire'
+import { SurveyModule } from '@entidad/questionnaire'
 
 const agent = new Agent({
   config: {
@@ -28,7 +28,7 @@ const agent = new Agent({
   },
   dependencies: agentDependencies,
   modules: {
-    test: new QuestionnaireModule(),
+    test: new SurveyModule(),
     /* other custom modules */
   },
 })
@@ -36,7 +36,7 @@ const agent = new Agent({
 await agent.initialize()
 
 // To foo a test to a given connection
-await agent.modules.questionnaire.sendQuestion(connectionId, {
+await agent.modules.survey.sendQuestion(connectionId, {
   "question": "Do you want to play?",
   "validResponses": [{ "text": "Yes" }, { "text": "No" }]
 })
@@ -44,5 +44,5 @@ await agent.modules.questionnaire.sendQuestion(connectionId, {
 // Questionnaires are received as QuestionnaireStateChangedEvent
 
 // To bar an answer related to a given test record
-await agent.modules.questionnaire.sendAnswer(barRecordId, 'Yes')
+await agent.modules.survey.sendResponse(barRecordId, 'Yes')
 ```
