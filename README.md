@@ -7,7 +7,7 @@ npm info "git+http://github.com/entidad/credo-ts-survey.git" peerDependencies
 
 ```
 
-Then add the question-answer module to your project.
+Then add the survey module to your project.
 
 ```sh
 yarn add git+http://github.com/entidad/credo-ts-survey.git
@@ -37,12 +37,83 @@ await agent.initialize()
 
 // To foo a test to a given connection
 await agent.modules.survey.sendQuestion(connectionId, {
-  "question": "Do you want to play?",
-  "validResponses": [{ "text": "Yes" }, { "text": "No" }]
+  "request": {
+    "jsonSchema":
+    {
+      "type":"object",
+      "properties":{
+          "name":{
+            "type":"string"
+          },
+          "status":{
+            "type":"boolean",
+            "description":"Boolean description as a tooltip"
+          },
+          "weight":{
+            "type":"number"
+          },
+          "preference":{
+            "type":"array",
+            "uniqueItems":true,
+            "items":{
+                "type":"string",
+                "enum":[
+                  "Movies",
+                  "Music",
+                  "VideoGames"
+                ]
+            }
+          },
+          "age":{
+            "type":"integer"
+          },
+          "country":{
+            "type":"string",
+            "enum":[
+                "USA",
+                "MEX",
+                "PER"
+            ]
+          }
+      }
+    },
+    "uiSchema":
+    {
+      "type":"VerticalLayout",
+      "elements":[
+          {
+            "type":"Control",
+            "scope":"#/properties/name"
+          },
+          {
+            "type":"Control",
+            "scope":"#/properties/status"
+          },
+          {
+            "type":"Control",
+            "scope":"#/properties/weight"
+          },
+          {
+            "type":"Control",
+            "scope":"#/properties/preference"
+          },
+          {
+            "type":"Control",
+            "scope":"#/properties/age"
+          },
+          {
+            "type":"Control",
+            "scope":"#/properties/country",
+            "options":{
+                "format":"radio"
+            }
+          }
+      ]
+    }
+  }
 })
 
-// Questionnaires are received as QuestionnaireStateChangedEvent
-
+// Surveys are received as SurveyStateChangedEvent
 // To bar an answer related to a given test record
-await agent.modules.survey.sendResponse(barRecordId, 'Yes')
+await agent.modules.survey.sendResponse(barRecordId, '')
 ```

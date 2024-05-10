@@ -14,3 +14,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 - Update README.md and linked information in package.json
 - Update SurveyApi for send request
 - Fix issue on SurveyEvents
+
+# 0.1.2 (2024-05-09)
+- Remove build folder
