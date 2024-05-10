@@ -1,2 +1,2 @@
-export * from './QuestionMessage'
-export * from './AnswerMessage'
+export * from './RequestMessage'
+export * from './ResponseMessage'

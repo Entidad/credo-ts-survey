@@ -1,2 +1,2 @@
 export * from './SurveyRecord'
-export * from './QuestionnaireRepository'
+export * from './SurveyRepository'
