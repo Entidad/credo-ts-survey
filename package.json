@@ -1,8 +1,8 @@
 {
-  "name": "@entidad/questionnaire",
+  "name": "@entidad/credo-ts-survey",
   "main": "build/index",
   "types": "build/index",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "files": [
     "build"
   ],
@@ -10,11 +10,11 @@
   "publishConfig": {
     "access": "public"
   },
-  "homepage": "https://github.com/Entidad/aries-agent-module-questionnaire",
+  "homepage": "https://github.com/Entidad/didcomm.org/tree/main/site/content/protocols/survey/0.1",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Entidad/aries-agent-module-questionnaire",
-    "directory": "packages/questionnaire"
+    "url": "https://github.com/Entidad/credo-ts-survey",
+    "directory": "packages/credo-ts-survey"
   },
   "scripts": {
     "build": "yarn run clean && yarn run compile",

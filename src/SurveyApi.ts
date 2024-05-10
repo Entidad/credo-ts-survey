@@ -43,7 +43,7 @@ export class SurveyApi {
    * @param config config for creating question message
    * @returns Questionnaire record
    */
-  public async sendQuestion(
+  public async sendRequest(
     connectionId: string,    
     config: {
       threadId:string,

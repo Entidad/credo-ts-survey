@@ -3,7 +3,7 @@ import type { SurveyRecord } from './repository'
 import type { BaseEvent } from '@credo-ts/core'
 
 export enum SurveyEventTypes {
-  SurveyStateChanged = 'QuestionnaireStateChanged',
+  SurveyStateChanged = 'SurveyStateChanged',
 }
 export interface SurveyStateChangedEvent extends BaseEvent {
   type: typeof SurveyEventTypes.SurveyStateChanged

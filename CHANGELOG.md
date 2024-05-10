@@ -9,3 +9,8 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 # 0.1.0 (2024-05-07)
 - Adapt to Survey Structure to Handlers, Models, Messages, Repository and Services
 - Replace 'questionnaire' object names by survey
+
+# 0.1.1 (2024-05-09)
+- Update README.md and linked information in package.json
+- Update SurveyApi for send request
+- Fix issue on SurveyEvents
