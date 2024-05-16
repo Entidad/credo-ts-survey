@@ -1,8 +1,5 @@
 import type { DependencyManager, FeatureRegistry, Module } from '@credo-ts/core'
-import { AgentConfig } from '@credo-ts/core'
-
-import { Protocol } from '@credo-ts/core'
-
+import { AgentConfig,  Protocol } from '@credo-ts/core'
 import { SurveyApi } from './SurveyApi'
 import { SurveyRole } from './SurveyRole'
 import { SurveyRepository } from './repository'

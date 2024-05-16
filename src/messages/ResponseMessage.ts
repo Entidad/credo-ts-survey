@@ -1,6 +1,6 @@
 import { AgentMessage, IsValidMessageType, parseMessageType } from '@credo-ts/core'
 import { Expose } from 'class-transformer'
-import { IsString, IsArray } from 'class-validator'
+import { IsString } from 'class-validator'
 
 export class ResponseMessage extends AgentMessage {
   /**

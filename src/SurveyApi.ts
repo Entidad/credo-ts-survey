@@ -1,15 +1,15 @@
 import type { SurveyRecord } from './repository'
-import type { Query } from '@credo-ts/core'
 import {
+  Query,
   AgentContext,
   ConnectionService,
   getOutboundMessageContext,
   injectable,
   MessageSender,
 } from '@credo-ts/core'
-
 import { ResponseMessageHandler, RequestMessageHandler } from './handlers'
 import { SurveyService } from './services'
+import { SurveyModel } from './models/SurveyModel'
 
 @injectable()
 export class SurveyApi {
@@ -48,12 +48,7 @@ export class SurveyApi {
     config: {
       threadId:string,
       expirationDate?:string,
-      request:{
-        jsonSchema: string,
-	      uiSchema: string,
-        initData?: string,
-        i18nData?: string
-      }
+      request:SurveyModel
     }){
     const connection = await this.connectionService.getById(this.agentContext, connectionId)
     connection.assertReady()

@@ -1,12 +1,10 @@
 import type { SurveyStateChangedEvent } from '../SurveyEvents'
 import type { AgentContext, InboundMessageContext, Query } from '@credo-ts/core'
-
 import { CredoError, EventEmitter, inject, injectable, InjectionSymbols, Logger } from '@credo-ts/core'
-
 import { SurveyEventTypes } from '../SurveyEvents'
 import { SurveyRole } from '../SurveyRole'
 import { ResponseMessage, RequestMessage } from '../messages'
-import { SurveyState } from '../models'
+import { SurveyState, SurveyModel } from '../models'
 import { SurveyRepository, SurveyRecord } from '../repository'
 
 @injectable()
@@ -40,12 +38,7 @@ export class SurveyService {
     config: {
       threadId:string,
       expirationDate?:string,
-      request:{
-	      jsonSchema: string,
-	      uiSchema: string,
-        initData?: string,
-        i18nData?: string
-      }
+      request:SurveyModel
     }
   ) {
     const requestMessage = new RequestMessage({
@@ -184,12 +177,7 @@ export class SurveyService {
     state: SurveyState
     threadId: string
     expirationDate?:string
-    request:{
-      jsonSchema: string,
-      uiSchema: string,
-      initData?: string,
-      i18nData?: string
-    }
+    request:SurveyModel
   }): Promise<SurveyRecord> {
     const surveyMessageRecord = new SurveyRecord({
       connectionId: options.connectionId,

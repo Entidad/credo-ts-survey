@@ -1,6 +1,5 @@
 import type { SurveyService } from '../services'
 import type { MessageHandler, MessageHandlerInboundMessage } from '@credo-ts/core'
-
 import { RequestMessage } from '../messages'
 
 export class RequestMessageHandler implements MessageHandler {

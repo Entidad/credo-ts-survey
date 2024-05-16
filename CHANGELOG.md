@@ -17,3 +17,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # 0.1.2 (2024-05-09)
 - Remove build folder
+
+# 0.1.3 (2024-05-15)
+- Adapt SurveyModel(surveyId, jsonSchema, uiSchema, initData, i18nData) to RequestMessage
+- Remove non-used imports

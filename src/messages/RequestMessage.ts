@@ -1,6 +1,7 @@
 import { AgentMessage, IsValidMessageType, parseMessageType } from '@credo-ts/core'
-import { Expose, Type } from 'class-transformer'
-import { IsBoolean, IsInstance, IsOptional, IsString, ValidateNested, IsArray/*entidad*/ } from 'class-validator'
+import { Expose } from 'class-transformer'
+import { IsBoolean, IsOptional, IsString} from 'class-validator'
+import { SurveyModel } from '../models'
 
 export class RequestMessage extends AgentMessage {
   /**
@@ -11,12 +12,7 @@ export class RequestMessage extends AgentMessage {
     id?: string
     threadId: string    
     signatureRequired?: boolean
-    request:{
-	    jsonSchema: string,
-	    uiSchema: string,
-      initData?: string,
-      i18nData?: string
-    }
+    request:SurveyModel
     expirationDate?:string
   }) {
     super()
@@ -44,10 +40,5 @@ export class RequestMessage extends AgentMessage {
   public expirationDate?: string
 
   @Expose({ name: 'request' })
-  public request!: {
-      jsonSchema: string,
-	    uiSchema: string,
-      initData?: string,
-      i18nData?: string
-  }
+  public request!: SurveyModel
 }

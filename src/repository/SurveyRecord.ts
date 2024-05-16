@@ -1,8 +1,9 @@
 import type { SurveyRole } from '../SurveyRole'
 import type { SurveyState } from '../models'
 import type { RecordTags, TagsBase } from '@credo-ts/core'
-
 import { CredoError, utils, BaseRecord } from '@credo-ts/core'
+import { SurveyModel } from '../models'
+
 
 export type CustomSurveyTags = TagsBase
 export type DefaultSurveyTags = {
@@ -25,12 +26,7 @@ export interface SurveyStorageProps {
   threadId: string
   expirationDate?:string  
   response?: string
-  request:{
-	  jsonSchema: string,
-	  uiSchema: string,
-    initData?: string,
-    i18nData?: string
-  }
+  request:SurveyModel
 }
 
 export class SurveyRecord extends BaseRecord<DefaultSurveyTags, CustomSurveyTags> {  
@@ -41,12 +37,7 @@ export class SurveyRecord extends BaseRecord<DefaultSurveyTags, CustomSurveyTags
   public threadId!: string
   public expirationDate?:string
   public response?: string
-  public request!:{
-	  jsonSchema: string,
-	  uiSchema: string,
-    initData?: string,
-    i18nData?: string
-  }
+  public request!:SurveyModel
 
   public static readonly type = 'SurveyRecord'
   public readonly type = SurveyRecord.type
