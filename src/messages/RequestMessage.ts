@@ -10,16 +10,13 @@ export class RequestMessage extends AgentMessage {
    */
   public constructor(options: {    
     id?: string
-    threadId: string    
     signatureRequired?: boolean
     request:SurveyModel
     expirationDate?:string
   }) {
     super()
-
     if (options) {
       this.id = options.id || this.generateId()
-      this.setThread({ threadId: options.threadId })
       this.signatureRequired = options.signatureRequired
       this.expirationDate=options.expirationDate
       this.request = options.request

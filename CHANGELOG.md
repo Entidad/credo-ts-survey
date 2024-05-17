@@ -21,3 +21,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 # 0.1.3 (2024-05-15)
 - Adapt SurveyModel(surveyId, jsonSchema, uiSchema, initData, i18nData) to RequestMessage
 - Remove non-used imports
+
+# 0.1.4 (2024-05-16)
+- Fix threadID Issue

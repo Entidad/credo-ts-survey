@@ -43,7 +43,6 @@ export class SurveyService {
   ) {
     const requestMessage = new RequestMessage({
       signatureRequired: false,
-      threadId:config.threadId,
       expirationDate:config.expirationDate,      
       request: config.request
     })
