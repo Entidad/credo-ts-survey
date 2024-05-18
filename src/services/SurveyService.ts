@@ -114,7 +114,9 @@ export class SurveyService {
    */
   public async createResponse(agentContext: AgentContext, surveyResponseRecord: SurveyRecord, response: string) {
     const responseMessage = new ResponseMessage({ response: response, threadId: surveyResponseRecord.threadId })
-    surveyResponseRecord.assertState(SurveyState.QuestionReceived)
+    surveyResponseRecord.assertState(SurveyState.QuestionSent)
+    surveyResponseRecord.assertRole(SurveyRole.Responder)
+    await this.updateState(agentContext, surveyResponseRecord, SurveyState.AnswerSent);    
     surveyResponseRecord.response = response	
     return { responseMessage, surveyResponseRecord }
   }
