@@ -4,7 +4,7 @@ exports.SurveyState = void 0;
 /**
  * Questionnaire states inferred from RFC 0113.
  *
- * @see https://github.com/hyperledger/aries-rfcs/blob/main/features/0113-question-answer/README.md
+ * @see https://github.com/Entidad/didcomm.org/tree/main/site/content/protocols/survey/0.1
  */
 var SurveyState;
 (function (SurveyState) {

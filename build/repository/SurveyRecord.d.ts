@@ -2,6 +2,7 @@ import type { SurveyRole } from '../SurveyRole';
 import type { SurveyState } from '../models';
 import type { RecordTags, TagsBase } from '@credo-ts/core';
 import { BaseRecord } from '@credo-ts/core';
+import { SurveyModel } from '../models';
 export type CustomSurveyTags = TagsBase;
 export type DefaultSurveyTags = {
     connectionId: string;
@@ -21,12 +22,7 @@ export interface SurveyStorageProps {
     threadId: string;
     expirationDate?: string;
     response?: string;
-    request: {
-        jsonSchema: string;
-        uiSchema: string;
-        initData?: string;
-        i18nData?: string;
-    };
+    request: SurveyModel;
 }
 export declare class SurveyRecord extends BaseRecord<DefaultSurveyTags, CustomSurveyTags> {
     connectionId: string;
@@ -36,12 +32,7 @@ export declare class SurveyRecord extends BaseRecord<DefaultSurveyTags, CustomSu
     threadId: string;
     expirationDate?: string;
     response?: string;
-    request: {
-        jsonSchema: string;
-        uiSchema: string;
-        initData?: string;
-        i18nData?: string;
-    };
+    request: SurveyModel;
     static readonly type = "SurveyRecord";
     readonly type = "SurveyRecord";
     constructor(props: SurveyStorageProps);

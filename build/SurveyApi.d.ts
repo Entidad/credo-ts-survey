@@ -1,7 +1,7 @@
 import type { SurveyRecord } from './repository';
-import type { Query } from '@credo-ts/core';
-import { AgentContext, ConnectionService, MessageSender } from '@credo-ts/core';
+import { Query, AgentContext, ConnectionService, MessageSender } from '@credo-ts/core';
 import { SurveyService } from './services';
+import { SurveyModel } from './models/SurveyModel';
 export declare class SurveyApi {
     private surveyService;
     private messageSender;
@@ -19,12 +19,7 @@ export declare class SurveyApi {
     sendRequest(connectionId: string, config: {
         threadId: string;
         expirationDate?: string;
-        request: {
-            jsonSchema: string;
-            uiSchema: string;
-            initData?: string;
-            i18nData?: string;
-        };
+        request: SurveyModel;
     }): Promise<SurveyRecord>;
     /**
      * Create an response message as the holder and send it in response to a request message

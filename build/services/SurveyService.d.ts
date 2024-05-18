@@ -1,6 +1,7 @@
 import type { AgentContext, InboundMessageContext, Query } from '@credo-ts/core';
 import { EventEmitter, Logger } from '@credo-ts/core';
 import { ResponseMessage, RequestMessage } from '../messages';
+import { SurveyModel } from '../models';
 import { SurveyRepository, SurveyRecord } from '../repository';
 export declare class SurveyService {
     private surveyRepository;
@@ -18,12 +19,7 @@ export declare class SurveyService {
     createSurvey(agentContext: AgentContext, connectionId: string, config: {
         threadId: string;
         expirationDate?: string;
-        request: {
-            jsonSchema: string;
-            uiSchema: string;
-            initData?: string;
-            i18nData?: string;
-        };
+        request: SurveyModel;
     }): Promise<{
         requestMessage: RequestMessage;
         surveyRecord: SurveyRecord;

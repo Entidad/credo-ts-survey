@@ -1,4 +1,5 @@
 import { AgentMessage } from '@credo-ts/core';
+import { SurveyModel } from '../models';
 export declare class RequestMessage extends AgentMessage {
     /**
      * Create new RequestMessage instance.
@@ -6,24 +7,13 @@ export declare class RequestMessage extends AgentMessage {
      */
     constructor(options: {
         id?: string;
-        threadId: string;
         signatureRequired?: boolean;
-        request: {
-            jsonSchema: string;
-            uiSchema: string;
-            initData?: string;
-            i18nData?: string;
-        };
+        request: SurveyModel;
         expirationDate?: string;
     });
     readonly type: string;
     static readonly type: import("@credo-ts/core/build/utils/messageType").ParsedMessageType;
     signatureRequired?: boolean;
     expirationDate?: string;
-    request: {
-        jsonSchema: string;
-        uiSchema: string;
-        initData?: string;
-        i18nData?: string;
-    };
+    request: SurveyModel;
 }

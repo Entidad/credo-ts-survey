@@ -13,6 +13,7 @@ exports.RequestMessage = void 0;
 const core_1 = require("@credo-ts/core");
 const class_transformer_1 = require("class-transformer");
 const class_validator_1 = require("class-validator");
+const models_1 = require("../models");
 class RequestMessage extends core_1.AgentMessage {
     /**
      * Create new RequestMessage instance.
@@ -23,7 +24,6 @@ class RequestMessage extends core_1.AgentMessage {
         this.type = RequestMessage.type.messageTypeUri;
         if (options) {
             this.id = options.id || this.generateId();
-            this.setThread({ threadId: options.threadId });
             this.signatureRequired = options.signatureRequired;
             this.expirationDate = options.expirationDate;
             this.request = options.request;
@@ -48,7 +48,7 @@ __decorate([
 ], RequestMessage.prototype, "expirationDate", void 0);
 __decorate([
     (0, class_transformer_1.Expose)({ name: 'request' }),
-    __metadata("design:type", Object)
+    __metadata("design:type", models_1.SurveyModel)
 ], RequestMessage.prototype, "request", void 0);
 exports.RequestMessage = RequestMessage;
 //# sourceMappingURL=RequestMessage.js.map
