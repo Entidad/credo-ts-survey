@@ -97,6 +97,7 @@ let SurveyService = class SurveyService {
         surveyResponseRecord.assertState(models_1.SurveyState.QuestionReceived);
         await this.updateState(agentContext, surveyResponseRecord, models_1.SurveyState.AnswerSent);
         surveyResponseRecord.response = response;
+        await this.surveyRepository.update(agentContext, surveyResponseRecord);
         return { responseMessage, surveyResponseRecord };
     }
     /**

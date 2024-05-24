@@ -3,6 +3,9 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.1.6 (2024-05-24)
+- Udpate response in Survey Answered record
+
 # 0.1.5 (2024-05-18)
 - Fix SurveyResponse State Issue
 - Add new build

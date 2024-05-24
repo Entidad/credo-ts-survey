@@ -117,6 +117,7 @@ export class SurveyService {
     surveyResponseRecord.assertState(SurveyState.QuestionReceived)
     await this.updateState(agentContext, surveyResponseRecord, SurveyState.AnswerSent);    
     surveyResponseRecord.response = response	
+    await this.surveyRepository.update(agentContext, surveyResponseRecord);
     return { responseMessage, surveyResponseRecord }
   }
 
