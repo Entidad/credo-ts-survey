@@ -8,9 +8,8 @@ exports.SurveyState = void 0;
  */
 var SurveyState;
 (function (SurveyState) {
-    SurveyState["QuestionSent"] = "question-sent";
-    SurveyState["QuestionReceived"] = "question-received";
-    SurveyState["AnswerReceived"] = "answer-received";
-    SurveyState["AnswerSent"] = "answer-sent";
+    SurveyState["RequestSent"] = "request-sent";
+    SurveyState["Completed"] = "completed";
+    SurveyState["RequestReceived"] = "request-received";
 })(SurveyState = exports.SurveyState || (exports.SurveyState = {}));
 //# sourceMappingURL=SurveyState.js.map

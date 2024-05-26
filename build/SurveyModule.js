@@ -27,7 +27,7 @@ class SurveyModule {
         // Feature Registry
         featureRegistry.register(new core_1.Protocol({
             id: 'https://didcomm.org/survey/1.0',
-            roles: [SurveyRole_1.SurveyRole.Questioner, SurveyRole_1.SurveyRole.Responder],
+            roles: [SurveyRole_1.SurveyRole.Requester, SurveyRole_1.SurveyRole.Responder],
         }));
     }
 }

@@ -31,7 +31,7 @@ export class SurveyModule implements Module {
     featureRegistry.register(
       new Protocol({
         id: 'https://didcomm.org/survey/1.0',
-        roles: [SurveyRole.Questioner, SurveyRole.Responder],
+        roles: [SurveyRole.Requester, SurveyRole.Responder],
       })
     )
   }

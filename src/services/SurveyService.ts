@@ -51,9 +51,9 @@ export class SurveyService {
       threadId: requestMessage.threadId,
       expirationDate:requestMessage.expirationDate,      
       connectionId: connectionId,
-      role: SurveyRole.Questioner,
+      role: SurveyRole.Requester,
       signatureRequired: false,
-      state: SurveyState.QuestionSent,
+      state: SurveyState.RequestSent,
       request:requestMessage.request
     })
 
@@ -93,7 +93,7 @@ export class SurveyService {
       expirationDate: requestMessage.expirationDate,
       role: SurveyRole.Responder,
       signatureRequired: false,
-      state: SurveyState.QuestionReceived,
+      state: SurveyState.RequestReceived,
       request: requestMessage.request
     })
     await this.surveyRepository.save(messageContext.agentContext, surveyRecord)
@@ -114,9 +114,9 @@ export class SurveyService {
    */
   public async createResponse(agentContext: AgentContext, surveyResponseRecord: SurveyRecord, response: string) {
     const responseMessage = new ResponseMessage({ response: response, threadId: surveyResponseRecord.threadId })
-    surveyResponseRecord.assertState(SurveyState.QuestionReceived)
-    await this.updateState(agentContext, surveyResponseRecord, SurveyState.AnswerSent);    
-    surveyResponseRecord.response = response	
+    surveyResponseRecord.assertState(SurveyState.Completed)
+    await this.updateState(agentContext, surveyResponseRecord, SurveyState.Completed);    
+    surveyResponseRecord.response = response
     await this.surveyRepository.update(agentContext, surveyResponseRecord);
     return { responseMessage, surveyResponseRecord }
   }
@@ -139,10 +139,10 @@ export class SurveyService {
     if (!surveyRecord) {
       throw new CredoError(`Survey record with thread Id ${responseMessage.threadId} not found.`)
     }
-    surveyRecord.assertState(SurveyState.QuestionSent)
-    surveyRecord.assertRole(SurveyRole.Questioner)
+    surveyRecord.assertState(SurveyState.RequestSent)
+    surveyRecord.assertRole(SurveyRole.Requester)
     surveyRecord.response = responseMessage.response
-    await this.updateState(messageContext.agentContext, surveyRecord, SurveyState.AnswerReceived)
+    await this.updateState(messageContext.agentContext, surveyRecord, SurveyState.Completed)
     return surveyRecord
   }
 

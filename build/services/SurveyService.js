@@ -43,9 +43,9 @@ let SurveyService = class SurveyService {
             threadId: requestMessage.threadId,
             expirationDate: requestMessage.expirationDate,
             connectionId: connectionId,
-            role: SurveyRole_1.SurveyRole.Questioner,
+            role: SurveyRole_1.SurveyRole.Requester,
             signatureRequired: false,
-            state: models_1.SurveyState.QuestionSent,
+            state: models_1.SurveyState.RequestSent,
             request: requestMessage.request
         });
         await this.surveyRepository.save(agentContext, surveyRecord);
@@ -75,7 +75,7 @@ let SurveyService = class SurveyService {
             expirationDate: requestMessage.expirationDate,
             role: SurveyRole_1.SurveyRole.Responder,
             signatureRequired: false,
-            state: models_1.SurveyState.QuestionReceived,
+            state: models_1.SurveyState.RequestReceived,
             request: requestMessage.request
         });
         await this.surveyRepository.save(messageContext.agentContext, surveyRecord);
@@ -94,8 +94,8 @@ let SurveyService = class SurveyService {
      */
     async createResponse(agentContext, surveyResponseRecord, response) {
         const responseMessage = new messages_1.ResponseMessage({ response: response, threadId: surveyResponseRecord.threadId });
-        surveyResponseRecord.assertState(models_1.SurveyState.QuestionReceived);
-        await this.updateState(agentContext, surveyResponseRecord, models_1.SurveyState.AnswerSent);
+        surveyResponseRecord.assertState(models_1.SurveyState.Completed);
+        await this.updateState(agentContext, surveyResponseRecord, models_1.SurveyState.Completed);
         surveyResponseRecord.response = response;
         await this.surveyRepository.update(agentContext, surveyResponseRecord);
         return { responseMessage, surveyResponseRecord };
@@ -114,10 +114,10 @@ let SurveyService = class SurveyService {
         if (!surveyRecord) {
             throw new core_1.CredoError(`Survey record with thread Id ${responseMessage.threadId} not found.`);
         }
-        surveyRecord.assertState(models_1.SurveyState.QuestionSent);
-        surveyRecord.assertRole(SurveyRole_1.SurveyRole.Questioner);
+        surveyRecord.assertState(models_1.SurveyState.RequestSent);
+        surveyRecord.assertRole(SurveyRole_1.SurveyRole.Requester);
         surveyRecord.response = responseMessage.response;
-        await this.updateState(messageContext.agentContext, surveyRecord, models_1.SurveyState.AnswerReceived);
+        await this.updateState(messageContext.agentContext, surveyRecord, models_1.SurveyState.Completed);
         return surveyRecord;
     }
     /**

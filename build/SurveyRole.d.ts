@@ -1,4 +1,4 @@
 export declare enum SurveyRole {
-    Questioner = "questioner",
+    Requester = "requester",
     Responder = "responder"
 }
