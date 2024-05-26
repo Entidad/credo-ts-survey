@@ -3,6 +3,9 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.1.8 (2024-05-25)
+- Fix State Issue
+
 # 0.1.7 (2024-05-25)
 - Udpate states and roles
 
