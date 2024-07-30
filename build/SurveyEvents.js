@@ -4,5 +4,5 @@ exports.SurveyEventTypes = void 0;
 var SurveyEventTypes;
 (function (SurveyEventTypes) {
     SurveyEventTypes["SurveyStateChanged"] = "SurveyStateChanged";
-})(SurveyEventTypes = exports.SurveyEventTypes || (exports.SurveyEventTypes = {}));
+})(SurveyEventTypes || (exports.SurveyEventTypes = SurveyEventTypes = {}));
 //# sourceMappingURL=SurveyEvents.js.map
