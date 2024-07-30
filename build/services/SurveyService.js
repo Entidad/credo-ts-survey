@@ -221,11 +221,11 @@ let SurveyService = class SurveyService {
         return this.surveyRepository.findByQuery(agentContext, query);
     }
 };
-exports.SurveyService = SurveyService;
-exports.SurveyService = SurveyService = __decorate([
+SurveyService = __decorate([
     (0, core_1.injectable)(),
     __param(2, (0, core_1.inject)(core_1.InjectionSymbols.Logger)),
     __metadata("design:paramtypes", [repository_1.SurveyRepository,
         core_1.EventEmitter, Object])
 ], SurveyService);
+exports.SurveyService = SurveyService;
 //# sourceMappingURL=SurveyService.js.map

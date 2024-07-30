@@ -11,5 +11,5 @@ var SurveyState;
     SurveyState["RequestSent"] = "request-sent";
     SurveyState["Completed"] = "completed";
     SurveyState["RequestReceived"] = "request-received";
-})(SurveyState || (exports.SurveyState = SurveyState = {}));
+})(SurveyState = exports.SurveyState || (exports.SurveyState = {}));
 //# sourceMappingURL=SurveyState.js.map

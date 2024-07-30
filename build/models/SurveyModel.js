@@ -22,7 +22,6 @@ class SurveyModel {
         }
     }
 }
-exports.SurveyModel = SurveyModel;
 __decorate([
     (0, class_transformer_1.Expose)({ name: 'survey_id' }),
     __metadata("design:type", String)
@@ -43,4 +42,5 @@ __decorate([
     (0, class_transformer_1.Expose)({ name: 'i18n_data' }),
     __metadata("design:type", String)
 ], SurveyModel.prototype, "i18nData", void 0);
+exports.SurveyModel = SurveyModel;
 //# sourceMappingURL=SurveyModel.js.map

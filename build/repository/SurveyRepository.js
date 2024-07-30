@@ -20,10 +20,10 @@ let SurveyRepository = class SurveyRepository extends core_1.Repository {
         super(SurveyRecord_1.SurveyRecord, storageService, eventEmitter);
     }
 };
-exports.SurveyRepository = SurveyRepository;
-exports.SurveyRepository = SurveyRepository = __decorate([
+SurveyRepository = __decorate([
     (0, core_1.injectable)(),
     __param(0, (0, core_1.inject)(core_1.InjectionSymbols.StorageService)),
     __metadata("design:paramtypes", [Object, core_1.EventEmitter])
 ], SurveyRepository);
+exports.SurveyRepository = SurveyRepository;
 //# sourceMappingURL=SurveyRepository.js.map
