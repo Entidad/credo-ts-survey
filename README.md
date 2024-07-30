@@ -13,11 +13,18 @@ Then add the survey module to your project.
 yarn add git+http://github.com/entidad/credo-ts-survey.git
 ```
 
+### Building
+
+```
+pnpm install --legacy-peer-deps
+pnpm run build
+```
+
 ### Quick start
 
 In order for this module to work, we have to inject it into the agent to access agent functionality. See the example for more information.
 
-### Example of usage
+### Example Usage
 
 ```ts
 import { SurveyModule } from '@entidad/questionnaire'
