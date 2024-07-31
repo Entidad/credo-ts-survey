@@ -16,7 +16,7 @@ yarn add git+http://github.com/entidad/credo-ts-survey.git
 ### Building
 
 ```
-pnpm install --legacy-peer-deps
+pnpm install
 pnpm run build
 ```
 
