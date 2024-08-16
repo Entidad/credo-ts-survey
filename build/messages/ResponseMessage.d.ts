@@ -10,6 +10,6 @@ export declare class ResponseMessage extends AgentMessage {
         response: string;
     });
     readonly type: string;
-    static readonly type: import("@credo-ts/core").ParsedMessageType;
+    static readonly type: import("@credo-ts/core/build/utils/messageType").ParsedMessageType;
     response: string;
 }
