@@ -12,7 +12,7 @@ export declare class RequestMessage extends AgentMessage {
         expirationDate?: string;
     });
     readonly type: string;
-    static readonly type: import("@credo-ts/core").ParsedMessageType;
+    static readonly type: import("@credo-ts/core/build/utils/messageType").ParsedMessageType;
     signatureRequired?: boolean;
     expirationDate?: string;
     request: SurveyModel;
