@@ -1,7 +1,6 @@
 import { AgentMessage, IsValidMessageType, parseMessageType } from '@credo-ts/core'
 import { Expose } from 'class-transformer'
 import { IsString } from 'class-validator'
-import { IsObject } from 'class-validator'
 
 export class ResponseMessage extends AgentMessage {
   /**
@@ -10,8 +9,8 @@ export class ResponseMessage extends AgentMessage {
    */
   public constructor(options: { 
     id?: string; 
-    threadId: string;
-    response: Object; 
+    threadId: string 
+    response: string; 
   }){
     super()
     if (options) {
@@ -26,6 +25,6 @@ export class ResponseMessage extends AgentMessage {
   public static readonly type = parseMessageType('https://didcomm.org/survey/1.0/response')
 
   @Expose({ name: 'response' })
-  @IsObject()
-  public response!: Object
+  @IsString()
+  public response!: string
 }

@@ -7,9 +7,9 @@ export declare class ResponseMessage extends AgentMessage {
     constructor(options: {
         id?: string;
         threadId: string;
-        response: string;
+        response: Object;
     });
     readonly type: string;
     static readonly type: import("@credo-ts/core").ParsedMessageType;
-    response: string;
+    response: Object;
 }

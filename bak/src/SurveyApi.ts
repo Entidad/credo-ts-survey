@@ -96,33 +96,6 @@ export class SurveyApi {
   }
 
   /**
-   * Wed Sep  4 16:07:02 SAST 2024
-   * Create an update message as the holder and send it in response to a request message
-   *
-   * @param surveryRecordId the id of the survey record
-   * @param response response included in the response message
-   * @returns Survey record
-   */
-  public async sendUpdate(surveryRecordId: string, response: string) {
-    const surveyRecord = await this.surveyService.getById(this.agentContext, surveryRecordId)
-    const { responseMessage, surveyResponseRecord } = await this.surveyService.createResponse(
-      this.agentContext,
-      surveyRecord,
-      response
-    )
-    const connection = await this.connectionService.getById(this.agentContext, surveyRecord.connectionId)
-    const outboundMessageContext = await getOutboundMessageContext(this.agentContext, {
-      message: responseMessage,
-      associatedRecord: surveyResponseRecord,
-      connectionRecord: connection,
-    })
-
-    await this.messageSender.sendMessage(outboundMessageContext)
-    return surveyResponseRecord
-  }
-
-
-  /**
    * Get all Survey records
    *
    * @returns list containing all Survey records
@@ -150,30 +123,4 @@ export class SurveyApi {
   public findById(surveyId: string) {
     return this.surveyService.findById(this.agentContext, surveyId)
   }
-
-  /**
-   * Wed Sep  4 16:08:07 SAST 2024
-   * Delete a Survey record by id
-   *
-   * @param surveyId The survey record id
-   * @return null
-   *
-   */
-  public async deleteById(surveyId: string) {
-    await this.surveyService.deleteById(this.agentContext, surveyId);
-    return;
-  }
-
-  /**
-   * Wed Sep  4 16:08:07 SAST 2024
-   * Delete all Surveys
-   *
-   * @return null
-   *
-   */
-  public async deleteAll() {
-    await this.surveyService.deleteAll(this.agentContext);
-    return;
-  }
-
 }

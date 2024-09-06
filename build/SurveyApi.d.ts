@@ -30,6 +30,15 @@ export declare class SurveyApi {
      */
     sendResponse(surveryRecordId: string, response: string): Promise<SurveyRecord>;
     /**
+     * Wed Sep  4 16:07:02 SAST 2024
+     * Create an update message as the holder and send it in response to a request message
+     *
+     * @param surveryRecordId the id of the survey record
+     * @param response response included in the response message
+     * @returns Survey record
+     */
+    sendUpdate(surveryRecordId: string, response: string): Promise<SurveyRecord>;
+    /**
      * Get all Survey records
      *
      * @returns list containing all Survey records
@@ -49,4 +58,21 @@ export declare class SurveyApi {
      *
      */
     findById(surveyId: string): Promise<SurveyRecord | null>;
+    /**
+     * Wed Sep  4 16:08:07 SAST 2024
+     * Delete a Survey record by id
+     *
+     * @param surveyId The survey record id
+     * @return null
+     *
+     */
+    deleteById(surveyId: string): Promise<void>;
+    /**
+     * Wed Sep  4 16:08:07 SAST 2024
+     * Delete all Surveys
+     *
+     * @return null
+     *
+     */
+    deleteAll(): Promise<void>;
 }

@@ -101,6 +101,22 @@ let SurveyService = class SurveyService {
         return { responseMessage, surveyResponseRecord };
     }
     /**
+     * ockert
+     * create update message, check that response is valid
+     *
+     * @param surveyRecord record containing request and response
+     * @param response response used in response message
+     * @returns answer message and Survey record
+     */
+    async createUpdate(agentContext, surveyResponseRecord, response) {
+        const responseMessage = new messages_1.ResponseMessage({ response: response, threadId: surveyResponseRecord.threadId });
+        //surveyResponseRecord.assertState(SurveyState.RequestReceived)
+        await this.updateState(agentContext, surveyResponseRecord, models_1.SurveyState.Completed);
+        surveyResponseRecord.response = response;
+        await this.surveyRepository.update(agentContext, surveyResponseRecord);
+        return { responseMessage, surveyResponseRecord };
+    }
+    /**
      * receive response as questioner
      *
      * @param messageContext the message context containing an response message
@@ -116,7 +132,7 @@ let SurveyService = class SurveyService {
         }
         surveyRecord.assertState(models_1.SurveyState.RequestSent);
         surveyRecord.assertRole(SurveyRole_1.SurveyRole.Requester);
-        surveyRecord.response = responseMessage.response;
+        surveyRecord.response = JSON.stringify(responseMessage.response);
         await this.updateState(messageContext.agentContext, surveyRecord, models_1.SurveyState.Completed);
         return surveyRecord;
     }
@@ -219,6 +235,38 @@ let SurveyService = class SurveyService {
      */
     async findAllByQuery(agentContext, query) {
         return this.surveyRepository.findByQuery(agentContext, query);
+    }
+    /**
+     * Delete a survey record by id
+     *
+     * @param surveyId The survey record id
+     * @throws {RecordNotFoundError} If no record is found
+     * @return null
+     *
+     */
+    async deleteById(agentContext, surveyId) {
+        const surveyRecord = await this.getById(agentContext, surveyId);
+        this.surveyRepository.delete(agentContext, surveyRecord);
+        return;
+    }
+    /**
+     * Deletes all survey records
+     *
+     * @return null
+     *
+     */
+    async deleteAll(agentContext) {
+        let surveyRecords = await this.getAll(agentContext);
+        for (var i = 0; i < surveyRecords.length; i++) {
+            try {
+                let surveyRecord = surveyRecords[i];
+                await this.surveyRepository.delete(agentContext, surveyRecord);
+            }
+            catch (e) {
+                console.error(e.toString());
+            }
+        }
+        return;
     }
 };
 SurveyService = __decorate([

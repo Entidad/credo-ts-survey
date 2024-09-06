@@ -43,6 +43,18 @@ export declare class SurveyService {
         surveyResponseRecord: SurveyRecord;
     }>;
     /**
+     * ockert
+     * create update message, check that response is valid
+     *
+     * @param surveyRecord record containing request and response
+     * @param response response used in response message
+     * @returns answer message and Survey record
+     */
+    createUpdate(agentContext: AgentContext, surveyResponseRecord: SurveyRecord, response: string): Promise<{
+        responseMessage: ResponseMessage;
+        surveyResponseRecord: SurveyRecord;
+    }>;
+    /**
      * receive response as questioner
      *
      * @param messageContext the message context containing an response message
@@ -109,4 +121,20 @@ export declare class SurveyService {
      *
      */
     findAllByQuery(agentContext: AgentContext, query: Query<SurveyRecord>): Promise<SurveyRecord[]>;
+    /**
+     * Delete a survey record by id
+     *
+     * @param surveyId The survey record id
+     * @throws {RecordNotFoundError} If no record is found
+     * @return null
+     *
+     */
+    deleteById(agentContext: AgentContext, surveyId: string): Promise<void>;
+    /**
+     * Deletes all survey records
+     *
+     * @return null
+     *
+     */
+    deleteAll(agentContext: AgentContext): Promise<void>;
 }

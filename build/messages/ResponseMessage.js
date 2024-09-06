@@ -35,8 +35,8 @@ __decorate([
 ], ResponseMessage.prototype, "type", void 0);
 __decorate([
     (0, class_transformer_1.Expose)({ name: 'response' }),
-    (0, class_validator_1.IsString)(),
-    __metadata("design:type", String)
+    (0, class_validator_1.IsObject)(),
+    __metadata("design:type", Object)
 ], ResponseMessage.prototype, "response", void 0);
 exports.ResponseMessage = ResponseMessage;
 //# sourceMappingURL=ResponseMessage.js.map
