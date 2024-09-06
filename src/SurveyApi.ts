@@ -105,19 +105,21 @@ export class SurveyApi {
    */
   public async sendUpdate(surveryRecordId: string, response: string) {
     const surveyRecord = await this.surveyService.getById(this.agentContext, surveryRecordId)
-    const { responseMessage, surveyResponseRecord } = await this.surveyService.createResponse(
+    const { responseMessage, surveyResponseRecord } = await this.surveyService.createUpdate(
       this.agentContext,
       surveyRecord,
       response
     )
-    const connection = await this.connectionService.getById(this.agentContext, surveyRecord.connectionId)
-    const outboundMessageContext = await getOutboundMessageContext(this.agentContext, {
-      message: responseMessage,
-      associatedRecord: surveyResponseRecord,
-      connectionRecord: connection,
-    })
+    //const connection = await this.connectionService.getById(this.agentContext, surveyRecord.connectionId)
+    //const outboundMessageContext = await getOutboundMessageContext(this.agentContext, {
+    //  message: responseMessage,
+    //  associatedRecord: surveyResponseRecord,
+    //  connectionRecord: connection,
+    //})
 
-    await this.messageSender.sendMessage(outboundMessageContext)
+    //do not send message for now, create seperate functionality for this later because
+    //it might be useful
+    //await this.messageSender.sendMessage(outboundMessageContext)
     return surveyResponseRecord
   }
 

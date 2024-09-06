@@ -77,14 +77,16 @@ let SurveyApi = class SurveyApi {
      */
     async sendUpdate(surveryRecordId, response) {
         const surveyRecord = await this.surveyService.getById(this.agentContext, surveryRecordId);
-        const { responseMessage, surveyResponseRecord } = await this.surveyService.createResponse(this.agentContext, surveyRecord, response);
-        const connection = await this.connectionService.getById(this.agentContext, surveyRecord.connectionId);
-        const outboundMessageContext = await (0, core_1.getOutboundMessageContext)(this.agentContext, {
-            message: responseMessage,
-            associatedRecord: surveyResponseRecord,
-            connectionRecord: connection,
-        });
-        await this.messageSender.sendMessage(outboundMessageContext);
+        const { responseMessage, surveyResponseRecord } = await this.surveyService.createUpdate(this.agentContext, surveyRecord, response);
+        //const connection = await this.connectionService.getById(this.agentContext, surveyRecord.connectionId)
+        //const outboundMessageContext = await getOutboundMessageContext(this.agentContext, {
+        //  message: responseMessage,
+        //  associatedRecord: surveyResponseRecord,
+        //  connectionRecord: connection,
+        //})
+        //do not send message for now, create seperate functionality for this later because
+        //it might be useful
+        //await this.messageSender.sendMessage(outboundMessageContext)
         return surveyResponseRecord;
     }
     /**

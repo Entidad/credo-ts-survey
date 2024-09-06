@@ -93,11 +93,13 @@ let SurveyService = class SurveyService {
      * @returns answer message and Survey record
      */
     async createResponse(agentContext, surveyResponseRecord, response) {
+        console.info("createResponse:beg");
         const responseMessage = new messages_1.ResponseMessage({ response: response, threadId: surveyResponseRecord.threadId });
-        surveyResponseRecord.assertState(models_1.SurveyState.RequestReceived);
+        //surveyResponseRecord.assertState(SurveyState.RequestReceived)
         await this.updateState(agentContext, surveyResponseRecord, models_1.SurveyState.Completed);
         surveyResponseRecord.response = response;
         await this.surveyRepository.update(agentContext, surveyResponseRecord);
+        console.info("createResponse:end");
         return { responseMessage, surveyResponseRecord };
     }
     /**
@@ -109,11 +111,14 @@ let SurveyService = class SurveyService {
      * @returns answer message and Survey record
      */
     async createUpdate(agentContext, surveyResponseRecord, response) {
+        //console.info("createUpdate:beg");
         const responseMessage = new messages_1.ResponseMessage({ response: response, threadId: surveyResponseRecord.threadId });
         //surveyResponseRecord.assertState(SurveyState.RequestReceived)
-        await this.updateState(agentContext, surveyResponseRecord, models_1.SurveyState.Completed);
+        await this.updateState(agentContext, surveyResponseRecord, surveyResponseRecord.state);
         surveyResponseRecord.response = response;
+        //console.info("createUpdate:response:"+JSON.stringify(surveyResponseRecord));
         await this.surveyRepository.update(agentContext, surveyResponseRecord);
+        //console.info("createUpdate:end");
         return { responseMessage, surveyResponseRecord };
     }
     /**
@@ -123,6 +128,7 @@ let SurveyService = class SurveyService {
      * @returns Survey record
      */
     async receiveResponse(messageContext) {
+        //console.info("receiveResponse:beg");
         const { message: responseMessage } = messageContext;
         this.logger.debug(`Receiving response message with id ${responseMessage.id}`);
         const connection = messageContext.assertReadyConnection();
@@ -130,10 +136,12 @@ let SurveyService = class SurveyService {
         if (!surveyRecord) {
             throw new core_1.CredoError(`Survey record with thread Id ${responseMessage.threadId} not found.`);
         }
-        surveyRecord.assertState(models_1.SurveyState.RequestSent);
-        surveyRecord.assertRole(SurveyRole_1.SurveyRole.Requester);
+        //console.info("receiveResponse:skipping assertions");
+        //surveyRecord.assertState(SurveyState.RequestSent)
+        //surveyRecord.assertRole(SurveyRole.Requester)
         surveyRecord.response = JSON.stringify(responseMessage.response);
         await this.updateState(messageContext.agentContext, surveyRecord, models_1.SurveyState.Completed);
+        //console.info("receiveResponse:end");
         return surveyRecord;
     }
     /**
