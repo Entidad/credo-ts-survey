@@ -139,12 +139,12 @@ let SurveyApi = class SurveyApi {
         return;
     }
 };
-SurveyApi = __decorate([
+exports.SurveyApi = SurveyApi;
+exports.SurveyApi = SurveyApi = __decorate([
     (0, core_1.injectable)(),
     __metadata("design:paramtypes", [services_1.SurveyService,
         core_1.MessageSender,
         core_1.ConnectionService,
         core_1.AgentContext])
 ], SurveyApi);
-exports.SurveyApi = SurveyApi;
 //# sourceMappingURL=SurveyApi.js.map

@@ -30,6 +30,7 @@ class RequestMessage extends core_1.AgentMessage {
         }
     }
 }
+exports.RequestMessage = RequestMessage;
 RequestMessage.type = (0, core_1.parseMessageType)('https://didcomm.org/survey/1.0/request');
 __decorate([
     (0, core_1.IsValidMessageType)(RequestMessage.type),
@@ -50,5 +51,4 @@ __decorate([
     (0, class_transformer_1.Expose)({ name: 'request' }),
     __metadata("design:type", models_1.SurveyModel)
 ], RequestMessage.prototype, "request", void 0);
-exports.RequestMessage = RequestMessage;
 //# sourceMappingURL=RequestMessage.js.map

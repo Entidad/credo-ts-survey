@@ -28,6 +28,7 @@ class ResponseMessage extends core_1.AgentMessage {
         }
     }
 }
+exports.ResponseMessage = ResponseMessage;
 ResponseMessage.type = (0, core_1.parseMessageType)('https://didcomm.org/survey/1.0/response');
 __decorate([
     (0, core_1.IsValidMessageType)(ResponseMessage.type),
@@ -38,5 +39,4 @@ __decorate([
     (0, class_validator_1.IsObject)(),
     __metadata("design:type", Object)
 ], ResponseMessage.prototype, "response", void 0);
-exports.ResponseMessage = ResponseMessage;
 //# sourceMappingURL=ResponseMessage.js.map

@@ -5,5 +5,5 @@ var SurveyRole;
 (function (SurveyRole) {
     SurveyRole["Requester"] = "requester";
     SurveyRole["Responder"] = "responder";
-})(SurveyRole = exports.SurveyRole || (exports.SurveyRole = {}));
+})(SurveyRole || (exports.SurveyRole = SurveyRole = {}));
 //# sourceMappingURL=SurveyRole.js.map
