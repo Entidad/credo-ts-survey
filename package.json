@@ -24,7 +24,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@credo-ts/core": "0.5.14",
+    "@credo-ts/core": "0.5.13",
     "class-transformer": "0.5.1",
     "class-validator": "0.14.1",
     "node-fetch": "^2.6.1",
